@@ -11,7 +11,7 @@ export const confi={
  */
 export const phrases = [
     {
-        "text":"Wende die 1NF, an falls diese Tabele bereits in der 1NF ist klicke auf weiter."
+        "text":"Wende die 1NF, an falls diese Tabelle bereits in der 1NF ist klicke auf weiter."
     },
     {
         "text":"Makiere alle "
