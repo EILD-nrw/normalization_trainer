@@ -15,6 +15,13 @@ export function main(app,data,events,phrase,phrase_nr,show_solution){
                         <span>${phrase.text}</span>
                     </b>
                 </section>
+                
+                
+                <section>
+                    <svg>
+                        
+                    </svg>
+                </section>
             </div>           
        </main>
     
