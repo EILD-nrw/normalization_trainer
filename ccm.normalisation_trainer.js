@@ -8,7 +8,7 @@
 (()=>{
 
     const component = {
-        name: 'normaliser',
+        name: 'normalisation_trainer',
         ccm: './libs/ccm/ccm.js',
         config: {
             "css": ["ccm.load",
