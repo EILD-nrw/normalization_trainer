@@ -27,7 +27,7 @@
                 "buttons":""
             }],
             "phrases":["ccm.load",{"url":"./frontend/resources/resources.js#phrases","type":"module"}],
-            "table":["ccm.load",{"url":"./backend/table.js"}],
+            "relation":["ccm.load",{"url":"./backend/table.js"}],
             "text":"Normalisation Trainer"
         },
         Instance: function (){
@@ -116,6 +116,7 @@
             const render = show_solution=>{
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
+
             }
         }
     }
