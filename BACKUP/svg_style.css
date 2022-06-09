@@ -1,0 +1,41 @@
+svg {
+    height: 100%;
+    width: 100%;
+    border: 1px solid;
+    --bgcolor: #e6f2f7;
+    --blue: #306f91;
+    --yellow: #dfac20;
+    --green: #8db243;
+    --accent: #c32e04;
+}
+
+#text {
+    font-size: 24px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+
+
+#selectButton{
+    fill: #5a9900;
+    fill-opacity: .5;
+    stroke: black;
+    stroke-width: 1;
+    cursor: pointer;
+}
+
+
+#createButton {
+    fill: #5a9900;
+    fill-opacity: .5;
+    stroke: black;
+    stroke-width: 1;
+    cursor: pointer;
+}
+
+rect{
+    stroke-width: 1;
+    stroke: black;
+    cursor: pointer;
+}
+
