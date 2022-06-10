@@ -124,7 +124,10 @@
                 svg = this.element.querySelector('#relation');
                 for(i=0;i<8;i++) {
                     for(j=0;j<8;j++) {
-                        svg.appendChild(getNode('rect', {x: 10 + 80 * i, y: 10+20*j, width: 80, height: 20, fill: 'snow'}))
+                        svg.appendChild(getNode("rect", {x: 10 + 80 * i, y: 10+20*j, width: 80, height: 20, fill: 'snow'}));
+                        var text = getNode("text",{x:40+80*i,y:25+20*j,fill:'black'});
+                        text.textContent = "Text";
+                        svg.appendChild(text);
                     }
                 }
             }
