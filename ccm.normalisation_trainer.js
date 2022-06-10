@@ -10,6 +10,7 @@
     const component = {
         name: 'normalisation_trainer',
         ccm: './libs/ccm/ccm.js',
+        svgn: 'http://www.w3.org/2000/svg',
         config: {
             "css": ["ccm.load",
                 [//serials
@@ -36,21 +37,25 @@
             * @type {Object.<string,Function>}
             */
             let $;
+
             /**
             * app state data
             * @type {Object}
              */
             let data;
+
             /**
             * current selected notaton
             * @type {number}
             */
             let phrase_nr;
+
             /**
              * phrases data
              * @type {Object}
              */
             let phrases;
+
             /**
              * when the instance is created, wenn all dependencies have been resolved and before the dependent sub-instances are initialized and ready
              *  @returns {Promise<void>}
@@ -116,8 +121,24 @@
             const render = show_solution=>{
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
-
+                svg = this.element.querySelector('#relation');
+                for(i=0;i<8;i++) {
+                    for(j=0;j<8;j++) {
+                        svg.appendChild(getNode('rect', {x: 10 + 80 * i, y: 10+20*j, width: 80, height: 20, fill: 'snow'}))
+                    }
+                }
             }
+
+
+
+
+            const getNode = (elem,v) => {
+                elem = document.createElementNS(svgn,elem);
+                for(var p in v)
+                    elem.setAttribute(p,v[p]);
+                return elem;
+            }
+
         }
     }
     let b="ccm."+component.name+(component.version?"-"+component.version.join("."):"")+".js";if(window.ccm&&null===window.ccm.files[b])return window.ccm.files[b]=component;(b=window.ccm&&window.ccm.components[component.name])&&b.ccm&&(component.ccm=b.ccm);"string"===typeof component.ccm&&(component.ccm={url:component.ccm});let c=(component.ccm.url.match(/(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/)||[""])[0];if(window.ccm&&window.ccm[c])window.ccm[c].component(component);else{var a=document.createElement("script");document.head.appendChild(a);component.ccm.integrity&&a.setAttribute("integrity",component.ccm.integrity);component.ccm.crossorigin&&a.setAttribute("crossorigin",component.ccm.crossorigin);a.onload=function(){(c="latest"?window.ccm:window.ccm[c]).component(component);document.head.removeChild(a)};a.src=component.ccm.url}

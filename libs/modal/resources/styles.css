@@ -4,6 +4,13 @@
  * @license The MIT License (MIT)
  */
 
+svg{
+  height: 100%;
+  width: 100%;
+  border: 1px solid;
+}
+
+
 #element {
   font: 400 15px Lato, sans-serif;
   height: 100%;
@@ -125,3 +132,4 @@ footer > * {
 *[data-invisible] {
   visibility: hidden;
 }
+

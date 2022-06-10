@@ -1,7 +1,8 @@
+
+
 var count=0;
 var svg = document.querySelector('svg');
 var svgn = 'http://www.w3.org/2000/svg';
-
 
 const createTable = () => {
 
@@ -32,7 +33,7 @@ const createRectangle = (xpos,ypos,width,height) => {
         fill: 'snow',
         isSelect: false
     });
-    svg.appendChild(cell);
+        svg.appendChild(cell);
 }
 
 const createText = (xpos,ypos,text) => {
