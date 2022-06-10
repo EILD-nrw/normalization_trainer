@@ -104,6 +104,19 @@
             this.getValue = () => $.clone(data);
 
             const events = {
+                selecetCell: (event) => {
+                   //console.log(event.target.nodeName)
+                    if('rect'==event.target.nodeName){
+                        cell = svg.getElementById(event.target.id)
+                        if ((cell.getAttribute('fill')) == 'snow') {
+                            cell.setAttribute('fill', 'yellow')
+                            cell.setAttribute('isSelect', true)
+                        } else {
+                            cell.setAttribute('fill', 'snow')
+                            cell.setAttribute('isSelect', false)
+                        }
+                    }
+                }
 
 
 
@@ -122,14 +135,18 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
+                var count = 0;
                 for(i=0;i<8;i++) {
                     for(j=0;j<8;j++) {
-                        svg.appendChild(getNode("rect", {x: 10 + 80 * i, y: 10+20*j, width: 80, height: 20, fill: 'snow'}));
-                        var text = getNode("text",{x:40+80*i,y:25+20*j,fill:'black'});
-                        text.textContent = "Text";
+                        var cell = getNode("rect", {id:'rect'+count,x: 10 + 80 * i, y: 10+20*j, width: 80, height: 20, fill: 'snow'})
+                        svg.appendChild(cell);
+                        var text = getNode("text",{id:'text'+count,x:40+80*i,y:25+20*j});
+                        text.textContent = 'rect'+count;
                         svg.appendChild(text);
+                        count++;
                     }
                 }
+                this.element.querySelector('svg').addEventListener('click',events.selecetCell)
             }
 
 
