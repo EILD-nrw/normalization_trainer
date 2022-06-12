@@ -4,7 +4,6 @@ export {render}
 export function main(app,data,events,phrase,phrase_nr,show_solution){
     //const section = data.section[phrase_nr-1];
     return html `
-        <script type="module" src="../backend/table.js"></script>
         <div class="d-flex" justify-content-between align-items-center>
             <h1 class="mx-3">${app.text}</h1>
         </div>

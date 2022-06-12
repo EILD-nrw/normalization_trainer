@@ -1,32 +1,76 @@
 
 
+
 document.addEventListener('DOMContentLoaded',function() {
 
-    var count = 0; //Counter for id
-    var svg = document.querySelector('svg');
-    var svgn = 'http://www.w3.org/2000/svg';
+    let count = 0; //Counter for id
+    let svg = document.querySelector('svg');
+    let width = 100;
+    let height = 30;
+    let x_pos = 5;
+    let y_pos = 5;
+    let a_col = 0;
+    let a_row = 0;
+    let svgn = 'http://www.w3.org/2000/svg';
+    let  task_array =[
+            {"KundenID": "1", "Name": "Tobisa Hansen"}
+    ]
+
+    let  task_array2 =[{
+        "Student":[
+            {"Matr": "1", "Name": "Tobisa Hansen"}
+            ],
+        "Vorlesung":[
+            {"VorlNr":"16","Vorlesung":"Datenbanken"},
+            {"VorlNr":"08","Vorlesung":"IT-Systeme"}
+        ],
+        "Belegunsplan":[
+            {"Matr":"1","VorlNr":"16"},
+            {"Matr":"1","VorlNr":"08"}
+        ]
+    }]
 
 
-    const createTable = () => {
+    function createTask(){
 
-        let xpos=10,
-            ypos=10,
-            width=100,
-            height=30,
-            col = 8,
-            row = 8;
+    let array=[]
 
-        for(let i=0;i<col;i++){
-            for(let j=0;j<row;j++){
-                createRectangle(xpos + width * i, ypos + height * j, width, height)
-                createText(xpos + width * i + width/2, ypos + height * j + height/2,i+" "+j)
-                count++;
-            }
+        for(let tables in task_array2[0]) {
+            array.push(tables)
         }
+
+        let num_of_tables = array.length;
+
+       for(let i=0;i<task_array2.length;i++){
+           for(let j=0;j<num_of_tables;j++){
+               createTable(task_array2[i][array[j]])
+           }
+       }
+
+
+    }
+
+    async function createTable(task){
+
+
+          let data = createArray(task);
+          data.forEach((row)=>{
+              row.forEach((col)=>{
+                  createRectangle(width*a_col+x_pos,y_pos+a_row*height,width,height)
+                  createText(width*a_col+x_pos+10,y_pos+a_row*height+15,col)
+                  a_col++;
+                  count++;
+              })
+              a_row++;
+              a_col=0;
+          })
+            y_pos+=10;
+
 
     }
 
     function createRectangle(xpos, ypos, width, height) {
+
         let cell = getNode('rect', {
             id: 'rect' + count,
             x: xpos,
@@ -44,8 +88,9 @@ document.addEventListener('DOMContentLoaded',function() {
             id: 'text' + count,
             x: xpos,
             y: ypos,
+            "font-size":10
         })
-        mytext.textContent = text;
+        mytext.textContent=text;
         svg.appendChild(mytext);
     }
 
@@ -76,9 +121,9 @@ document.addEventListener('DOMContentLoaded',function() {
         let isSelect_arr = []
 
 
-        for(let i=0;i<col;i++){
+        for(let j=0;j<col;j++){
                 isSelect_arr[i]=[]
-            for(let j=0;j<row;j++){
+            for(let i=0;i<row;i++){
                 let isSelect_value = document.getElementById('rect'+isSelect_count).getAttribute('isSelect');
                 isSelect_arr[i][j]=isSelect_value;
                 isSelect_count++;
@@ -88,8 +133,48 @@ document.addEventListener('DOMContentLoaded',function() {
 
     }
 
+    function createArray(task){
+
+            var array_col = [];
+            var array = []
+            var rowHash = task[0];
+            var temp_count=0;
+
+
+            for(let key in rowHash){
+                array_col.push(key);
+            }
+
+            var arr_length = array_col.length;
+
+            for(let i=0;i<task.length;i++){
+                for(let j=0;j<arr_length;j++){
+                      array_col.push(task[i][array_col[j]]);
+                }
+            }
+
+            console.table(array_col)
+
+        //TODO: Fix Array Creation
+            for(let i=0; i<task.length+1; i++) {
+                array[i] = [];
+                for (let j = 0; j <arr_length;  j++) {
+
+                    array[i][j] = array_col[temp_count];
+                    temp_count++;
+                }
+
+            }
+
+
+
+            return array;
+
+
+    }
+
   document.querySelector('svg').addEventListener('click',selectZell)
-  document.getElementById('createButton').addEventListener('click',createTable)
+  document.getElementById('createButton').addEventListener('click',createTask)
   document.getElementById('selectButton').addEventListener('click',getSelectMatrix);
 
 
