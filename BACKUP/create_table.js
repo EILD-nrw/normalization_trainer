@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded',function() {
     let a_col = 0;
     let a_row = 0;
     let svgn = 'http://www.w3.org/2000/svg';
-    let  task_array =[
-            {"KundenID": "1", "Name": "Tobisa Hansen"}
-    ]
+    let  task_array =[{
+       "Student":[{"KundenID": "1", "Name": "Tobisa Hansen"}]
+    }]
 
     let  task_array2 =[{
         "Student":[
@@ -35,15 +35,15 @@ document.addEventListener('DOMContentLoaded',function() {
 
     let array=[]
 
-        for(let tables in task_array2[0]) {
+        for(let tables in task_array[0]) {
             array.push(tables)
         }
 
         let num_of_tables = array.length;
 
-       for(let i=0;i<task_array2.length;i++){
+       for(let i=0;i<task_array.length;i++){
            for(let j=0;j<num_of_tables;j++){
-               createTable(task_array2[i][array[j]])
+               createTable(task_array[i][array[j]])
            }
        }
 
