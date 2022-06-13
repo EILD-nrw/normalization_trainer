@@ -46,7 +46,9 @@ const createText = (xpos,ypos,text) => {
         id: 'text'+count,
         x:xpos,
         y:ypos,
-        "font-size":10
+        "font-size":8,
+        "font-family":"monospace",
+        "stroke-width":"0.1"
     })
     mytext.textContent = text;
     svg.appendChild(mytext);
@@ -61,20 +63,6 @@ const getNode = (elem,v) => {
 
 const getSelectMatrix = () => {
 
-}
-
-const fillSelected = (event) => {
-    var elem = event.target;
-        if('rect'==elem.nodeName){
-            let cell = document.getElementById(elem.id)
-            if((cell.getAttribute('fill'))=='snow'){
-                cell.setAttribute('fill','yellow')
-                cell.setAttribute('isSelect',true)
-            }else{
-                cell.setAttribute('fill','snow')
-                cell.setAttribute('isSelect',false)
-            }
-        }
 }
 
 const createTask= (settask) => {
