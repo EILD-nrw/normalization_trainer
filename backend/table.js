@@ -1,7 +1,5 @@
 
-
 let count = 0; //Counter for id
-//let svg = document.querySelector('svg');
 let width = 100;
 let height = 30;
 let x_pos = 5;
@@ -13,8 +11,8 @@ let parent;
 
 const createTable = (task) => {
 
-
-    let data = createArray(task);
+    console.log("CREATE")
+    data = task;
     data.forEach((row)=>{
         row.forEach((col)=>{
             createRectangle(width*a_col+x_pos,y_pos+a_row*height,width,height)
@@ -25,7 +23,9 @@ const createTable = (task) => {
         a_row++;
         a_col=0;
     })
+
     y_pos+=10;
+
 }
 
 const createRectangle = (xpos,ypos,width,height) => {
@@ -65,33 +65,28 @@ const getSelectMatrix = () => {
 
 }
 
-const createTask= (settask) => {
+const createTask = (settask,pharse) => {
 
-    count = 0;
-    let task = settask;
-    let array=[]
-
-
-
-    for(let tables  in task[0]){
-        array.push(tables)
+    let data = settask[pharse];
+    if(data.length==1){
+        console.log("JOIN CRETE TABLE")
+        createTable(data[0])
     }
 
-    let num_of_tables = array.length;
+    console.log(data[0])
+    data.forEach((tables)=>{
+        tables.forEach((row)=>{
+            row.forEach((col)=>{
 
-    for(let i=0;i<task.length;i++){
-        for(let j=0;j<num_of_tables;j++){
-            let tableTitle = (getNode('text',{
-                id: 'title'+ count,
-                x:x_pos,
-                y:y_pos
-            }))
-            tableTitle.textContent = array[j];
-            svg.appendChild(tableTitle)
-            y_pos+=10
-            createTable(task[i][array[j]]);
-        }
-    }
+            })
+        })
+
+
+    })
+
+
+
+
 
 
 

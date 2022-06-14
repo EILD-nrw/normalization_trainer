@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded',function() {
     let  task_array =[{
        "Student":[{"KundenID": "1", "Name": "Tobisa Hansen"}]
     }]
-
     let  task_array2 =[{
         "Student":[
             {"Matr": "1", "Name": "Tobisa Hansen"}

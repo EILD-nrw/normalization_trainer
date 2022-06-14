@@ -1,3 +1,10 @@
+export const config = {}
+
+/**
+ * attributes of an relation
+ * @type {string[]}
+ */
+
 export const firstName = [
     "Harry","Ross",
     "Bruce","Cook",
@@ -78,9 +85,16 @@ export const plz = [
     "49896","41684",
     "49898","12168"
 ]
-export const buildings = []
-export const rooms = []
+export const buildings = ["A","B","C"]
+export const rooms = ["024","486","483","412","448"]
 
+/**
+ *  checks Arrays that holds importent properties from the arrays abouve
+ */
+
+/**
+ * @type {({noAtomar: string, attributs: [string, string]}|{noAtomar: string, attributs: [string, string]}|{noAtomar: string, attributs: [string, string]})[]}
+ */
 export const atomar = [
     {
         "noAtomar":"name",
@@ -95,7 +109,10 @@ export const atomar = [
         "attributs":["price","currency"]
     }
 ]
-
+/**
+ *
+ * @type {{persID: [string, string, string, string, string], price: [string], buildings: [string], artikID: [string, string], VorlID: [string, string], plz: [string]}[]}
+ */
 export const functional = [
     {
     "persID":["firstName","lastName","streets","housenr","city"],
@@ -107,6 +124,33 @@ export const functional = [
 }
 ]
 
-export const generatetTastk = [{
-    "timetable": ["persID","name","VorlID","lecture","buildings","rooms","street"]
-}]
+/**
+ *  eneratedTasks holds fixed constructs/examples that are to be created.
+ * @type {{timetable: string[]}[]}
+ */
+export const generatetTaskt = [
+    {
+    "nnf": ["persID","name","VorlID","lecture","buildings","rooms","street"],
+    "1nnf":["persID","firstname","lastname","VorlID","lecture","buildings","rooms","street"],
+    "2nnf":[
+        ["persID","firstname","lastname"],
+        ["persID","VorlId","lecture"],
+        ["VorlId","buildings","rooms","street"]
+    ],
+    "3nnf":[
+        ["persID","firstname","lastname"],
+        ["persID","VorlId","lecture"],
+        ["VorlId","buildings","rooms"],
+        ["rooms","street"]
+        ],
+    "bcnf":[
+        ["persID","firstname","lastname"],
+        ["persID","VorlId"],
+        ["VorlId","lecture"],
+        ["VorlId","buildings","rooms"],
+        ["rooms","street"]
+        ]
+    },
+    {}
+]
+

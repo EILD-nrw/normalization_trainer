@@ -13,19 +13,11 @@ export function main(app,data,events,phrase,phrase_nr,show_solution){
                 <section class="lead text-nowrap px-2 py-3" ?data-hidden=${!phrase.text}>
                     <b>
                         <span>${phrase.text}</span>
-                    </b>
-                 
+        
                 </section>
                 <section>
-                    <svg id="relation" viewBox="0 0 800 400"></svg>
-                </section>  
-          
-                
-                    
-                
-               
-                   
-           
+                    <svg id="relation" viewBox="0 0 880 440"></svg>
+                </section>
             </div>           
        </main>
     

@@ -27,9 +27,11 @@
                 "closed":true,
                 "buttons":""
             }],
+            "database":["ccm.load",{"url":"./backend/database.js","type":"module"}],
             "phrases":["ccm.load",{"url":"./frontend/resources/resources.js#phrases","type":"module"}],
             "relation":["ccm.load",{"url":"./backend/table.js"}],
             "solution":["ccm.load",{"url":"./backend/solution.js"}],
+            "generateion":["ccm.load",{"url":"./backend/generatetask.js"}],
             "text":"Normalisation Trainer"
         },
         Instance: function (){
@@ -62,8 +64,13 @@
              * @type {Array}
              */
             let task_table;
-
             /**
+             *  task data
+             * @type {Object}
+             */
+            let task_data;
+
+             /**
              * when the instance is created, wenn all dependencies have been resolved and before the dependent sub-instances are initialized and ready
              *  @returns {Promise<void>}
              */
@@ -85,6 +92,7 @@
             this.ready = async()=>{
 
                 phrases = $.clone(this.phrases);
+                task_data = $.clone(this.database)
                 if (!this.number) this.number = this.phrases.length;
                 this.onready && await this.onready({instance: this})
 
@@ -143,13 +151,9 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-                createTask(phrases[0].task,);
+                createTask(get_example(),1)
                 this.element.querySelector('svg').addEventListener('click',events.selecetCell);
-                task_solution(phrases[0].solution);
-
             }
-
-
         }
     }
     let b="ccm."+component.name+(component.version?"-"+component.version.join("."):"")+".js";if(window.ccm&&null===window.ccm.files[b])return window.ccm.files[b]=component;(b=window.ccm&&window.ccm.components[component.name])&&b.ccm&&(component.ccm=b.ccm);"string"===typeof component.ccm&&(component.ccm={url:component.ccm});let c=(component.ccm.url.match(/(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)/)||[""])[0];if(window.ccm&&window.ccm[c])window.ccm[c].component(component);else{var a=document.createElement("script");document.head.appendChild(a);component.ccm.integrity&&a.setAttribute("integrity",component.ccm.integrity);component.ccm.crossorigin&&a.setAttribute("crossorigin",component.ccm.crossorigin);a.onload=function(){(c="latest"?window.ccm:window.ccm[c]).component(component);document.head.removeChild(a)};a.src=component.ccm.url}
