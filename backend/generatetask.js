@@ -2,22 +2,23 @@ const generade = () => {
 
     console.log("TEST")
 
-    /*TODO:: Beispiel von Database nehmen
-             Beispiel mit daten füllen
-             Beispiel bis zum BCNF Form füllen
-             InCompakten Array Packen
+    /**
+     * TODO:: Beispiel von Database nehmen
+     *        Beispiel mit daten füllen
+     *        Beispiel bis zum BCNF Form füllen
+     *        InCompakten Array Packen
      */
-
 }
+
+
 const rand = () => {}
 const create_redundazce = () => {}
-
 const get_example = () => {
 
     let test_example =  []
     let nnf =[
         ["persID", "name", "VorlID", "lecture", "rooms", "street"],
-        ["13478", "Diloo", "1238", "Datenbank", "B 431", "Am Schwimmbad"],
+        ["13478", "Diloo", "1238", "Datenbanken", "B 431", "Am Schwimmbad"],
         ["13478", "Diloo", "1153", "Englisch I", "D 123", "Blechhammer"],
         ["12481", "Wilke", "1352", "Analysis", "C 231", "Blechhammer"],
         ["12496", "Schmidt", "1543", "Systemanalyse", "B 23", "Am Schwimmbad"],

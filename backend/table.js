@@ -12,6 +12,7 @@ let parent;
 const createTable = (task) => {
 
     console.log("CREATE")
+    console.table(task);
     data = task;
     data.forEach((row)=>{
         row.forEach((col)=>{
@@ -68,27 +69,28 @@ const getSelectMatrix = () => {
 const createTask = (settask,pharse) => {
 
     let data = settask[pharse];
-    if(data.length==1){
+
+    /*if(data.length==1){
         console.log("JOIN CRETE TABLE")
         createTable(data[0])
     }
+    else {
+        console.log(data[0])
+        data.forEach((tables) => {
+            tables.forEach((row) => {
+                row.forEach((col) => {
 
-    console.log(data[0])
-    data.forEach((tables)=>{
-        tables.forEach((row)=>{
-            row.forEach((col)=>{
-
+                })
             })
+
+
         })
-
-
+    }*/
+    console.table(settask)
+    console.log(pharse)
+    data.forEach((tables)=>{
+        createTable(tables);
     })
-
-
-
-
-
-
 
 }
 

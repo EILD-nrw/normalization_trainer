@@ -151,7 +151,7 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-                createTask(get_example(),1)
+                createTask(get_example(),2)
                 this.element.querySelector('svg').addEventListener('click',events.selecetCell);
             }
         }
