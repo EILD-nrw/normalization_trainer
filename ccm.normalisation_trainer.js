@@ -131,9 +131,13 @@
                             cell.setAttribute('isSelect', false)
                         }
                     }
-                }
+                },
 
-
+                onNext: () =>{
+                    if(phrase_nr === this.number) return;
+                        phrases.shift(); nextPhrase();
+                        this.onchange && this.onchange({event: 'next', instance:this,phrase:phrase_nr});
+                },
 
             }
 
@@ -151,8 +155,14 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-                createTask(get_example(),2)
+                createTask(get_example(),phrase_nr)
                 this.element.querySelector('svg').addEventListener('click',events.selecetCell);
+            }
+
+            const reset = () =>{
+
+                this.element.classList.remove('correct','failed');
+                this.element.querySelectorAll('[selected]').forEach(option => option.selected = false);
             }
         }
     }

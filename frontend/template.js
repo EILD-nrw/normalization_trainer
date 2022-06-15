@@ -16,7 +16,11 @@ export function main(app,data,events,phrase,phrase_nr,show_solution){
         
                 </section>
                 <section>
-                    <svg id="relation" viewBox="0 0 880 440"></svg>
+                    <svg id="relation" viewBox="0 0 880 300"></svg>
+                </section>
+                
+                <section id="buttons" class="d-flex justify-content-center flex-wrap px-2 py-3">
+                    <button id="next" class="btn btn-primary m-1" @click=${events.onNext}> Next </button>
                 </section>
             </div>           
        </main>
