@@ -1,4 +1,3 @@
-export const config = {}
 
 /**
  * attributes of an relation

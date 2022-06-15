@@ -1,13 +1,15 @@
-const generade = () => {
+const generade = (data) => {
 
     console.log("TEST")
-
+    console.log(data.generatetTaskt.length)
     /**
      * TODO:: Beispiel von Database nehmen
      *        Beispiel mit daten füllen
      *        Beispiel bis zum BCNF Form füllen
      *        InCompakten Array Packen
      */
+
+
 }
 
 
@@ -37,6 +39,7 @@ const get_example = () => {
         ["12462", "Schmidt", "1421", "WWS I", "C"," 250", "Blechhammer"]
     ];
     let nf2_student = [
+        ["name","Matrk"],
         ["Dilloo","13478"],
         ["Wike","12481"],
         ["Schmidth","12496"],
@@ -44,6 +47,7 @@ const get_example = () => {
         ["Schmidt","12462"]
     ]
     let nf2_belegungsplan = [
+        ["Matrk","Lv-Nr","Lehrveranstaltung"],
         ["13478","1238","Datenbanken"],
         ["13478","1153","English I"],
         ["12481","1352","Analysis"],
@@ -61,6 +65,7 @@ const get_example = () => {
         ["1421",  "C"," 250", "Blechhammer"]
     ]
     let nf3_student = [
+        ["name","Matrk"],
         ["Dilloo","13478"],
         ["Wike","12481"],
         ["Schmidth","12496"],
@@ -68,6 +73,7 @@ const get_example = () => {
         ["Schmidt","12462"]
     ]
     let nf3_belegungsplan = [
+        ["Matrk","Lv-Nr","Lehrveranstaltung"],
         ["13478","1238","Datenbanken"],
         ["13478","1153","English I"],
         ["12481","1352","Analysis"],
