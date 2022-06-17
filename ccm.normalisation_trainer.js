@@ -40,30 +40,21 @@
             * @type {Object.<string,Function>}
             */
             let $;
-
             /**
             * app state data
             * @type {Object}
              */
             let data;
-
             /**
             * current selected notaton
             * @type {number}
             */
             let phrase_nr;
-
             /**
              * phrases data
              * @type {Object}
              */
             let phrases;
-
-            /**
-             * task table
-             * @type {Array}
-             */
-            let task_table;
             /**
              *  task data
              * @type {Object}

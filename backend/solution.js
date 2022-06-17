@@ -1,6 +1,6 @@
 let solution_arr;
 let atomar_arr;
-let functional_err;
+let functional_arr;
 let db;
 
 
@@ -27,7 +27,7 @@ const createSolution = (database,phrase_nr) => {
     solution_arr = [];
     db = database;
     atomar_arr = database.atomar;
-    functional_err = database.functional;
+    functional_arr = database.functional;
 
 
     switch(phrase_nr-1) {
@@ -77,43 +77,69 @@ const nf1 = (count) => {
     }
 
 }
-
-function findDuplicates(value, index, self)
-{
+//CHECK FOR REDUNDANCE IN 2NF
+const findDuplicates = (value, index, self) =>{
     return self.indexOf(value) != index;
+}
+
+const checkDublicateIdIsEqual = (dup,table_arr,table_header) =>{
+
+    let main_pk = db.start_pk;
+    let func_pk_arr = []
+
+    functional_arr.forEach((func)=>{
+        if(func.pk==main_pk){
+            func.at.forEach((at)=>{
+                func_pk_arr.push(table_header.indexOf(at))
+            })
+        }
+    })
+
+
+
+
+
+    return true;
 }
 
 const nf2_redunance = (count) => {
 
     let temp_arr = [];
+    let table_arr = [];
+
+
     let table_header = db['1nnf'];
 
 
 
-    for(let i=0;i<count;i++)
-        temp_arr.push(svg.getElementById('text'+i).textContent)
+    //create Mul-Array
+    for(let i=0;i<table_header.length;i++)
+        temp_arr[i]=[]
 
-    let duplicates = temp_arr.filter(findDuplicates)
-
-
-    //Markt all duplicated
-    for(let i=0;i<count;i++) {
-        solution_arr[i]=0;
-        let cell = svg.getElementById('text' + i).textContent
-            duplicates.forEach((item)=>{
-                if(item == cell) {
-                        solution_arr[i] = 1;
-                    }
-
-
-            })
+    for(let i=0;i<count;i++){
+        let row = i%table_header.length;
+        let content = svg.getElementById('text'+i).textContent
+        temp_arr[row].push(content)
+        table_arr.push(content)
     }
 
+    let duplicate = table_arr.filter(findDuplicates)
+    let tmp=0;
+    table_arr.forEach((cell)=>{
+        solution_arr[tmp]=0;
+        duplicate.forEach((dup)=>{
+            if(dup==cell){
+                if(checkDublicateIdIsEqual(dup,temp_arr,table_header))
+                    solution_arr[tmp]=1;
+            }
+
+        })
+        tmp++;
+    })
 
 
 
-
-
+    console.log(solution_arr)
 
 
 

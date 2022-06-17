@@ -167,7 +167,8 @@ export const shematas = [
                 "pk":"building",
                 "at":["street"]
             }
-        ]
+        ],
+        "start_pk":"persID"
     }
 ]
 
