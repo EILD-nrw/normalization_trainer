@@ -17,7 +17,7 @@ const get_example = () => {
 
     let test_example =  []
     let nnf =[
-        ["persID", "name", "VorlID", "lecture", "rooms", "street"],
+        ["persID", "name", "VorlID", "lecture", "room", "street"],
         ["13478", "Diloo", "1238", "Datenbanken", "B 431", "Am Schwimmbad"],
         ["13478", "Diloo", "1153", "Englisch I", "D 123", "Blechhammer"],
         ["12481", "Wilke", "1352", "Analysis", "C 231", "Blechhammer"],
@@ -27,8 +27,8 @@ const get_example = () => {
         ["12462", "Schmidt", "1421", "WWS I", "C 250", "Blechhammer"]
     ];
     let nf1 = [
-        ["persID", "name", "VorlID", "lecture", "gebäude","rooms", "street"],
-        ["13478", "Diloo", "1238", "Datenbank", "B"," 431", "Am Schwimmbad"],
+        ["persID", "name", "VorlID", "lecture", "gebäude","room", "street"],
+        ["13478", "Diloo", "1238", "Datenbanken", "B"," 431", "Am Schwimmbad"],
         ["13478", "Diloo", "1153", "Englisch I", "D"," 123", "Blechhammer"],
         ["12481", "Wilke", "1352", "Analysis", "C"," 231", "Blechhammer"],
         ["12496", "Schmidt", "1543", "Systemanalyse", "B"," 23", "Am Schwimmbad"],
@@ -77,12 +77,12 @@ const get_example = () => {
         ["12462","1421","WWS I"]
     ]
     let nf3_lehrveranstalltung = [
-        [ "VorlID", "gebäude","rooms", "street"],
-        ["1238", "B"," 431", "Am Schwimmbad"],
-        ["1153", "D"," 123", "Blechhammer"],
-        ["1352",  "C"," 231", "Blechhammer"],
-        ["1543", "B"," 23", "Am Schwimmbad"],
-        ["1421",  "C"," 250", "Blechhammer"]
+        [ "VorlID", "gebäude","rooms"],
+        ["1238", "B"," 431"],
+        ["1153", "D"," 123"],
+        ["1352",  "C"," 231"],
+        ["1543", "B"," 23"],
+        ["1421",  "C"," 250"]
     ]
     let nf3_gebauede = [
         [ "gebäude", "street"],

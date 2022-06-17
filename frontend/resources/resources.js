@@ -20,5 +20,11 @@ export const phrases = [
     },
     {
         "text":"Welche Attribute sind von dem Primärschlüssel funktional Abhängig"
+    },
+    {
+        "text":"3NF"
+    },
+    {
+        "text":"BNF"
     }
 ]

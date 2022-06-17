@@ -1,6 +1,6 @@
 
 let count = 0; //Counter for id
-let width = 100;
+let width = 80;
 let height = 30;
 let x_pos = 5;
 let y_pos = 15;
@@ -12,8 +12,9 @@ let parent;
 const createTable = (task) => {
 
 
-    data = task;
-    data.forEach((row)=>{
+
+
+    task.forEach((row)=>{
         row.forEach((col)=>{
             createRectangle(width*a_col+x_pos,y_pos+a_row*height,width,height)
             createText(width*a_col+x_pos+10,y_pos+a_row*height+15,col)
@@ -24,7 +25,6 @@ const createTable = (task) => {
         a_col=0;
     })
 
-    y_pos+=10;
 
 }
 
@@ -63,68 +63,79 @@ const getNode = (elem,v) => {
 
 const getSelectMatrix = () => {
 
+    let select_arr=[]
+
+    for(let i=0;i<count;i++){
+        cell = svg.getElementById('rect'+i).getAttribute('fill');
+        if(cell == 'yellow')
+            select_arr[i]="1";
+        else
+            select_arr[i]="0";
+    }
+
+  //  console.log(count);
+   // console.log(select_arr);
+    return select_arr;
+
 }
 
-const createTask = (settask,pharse) => {
+const  createTask = async (settask,pharse) => {
 
-    console.log(pharse)
-    let data = settask[pharse-1];
+    let table_nr;
 
-    /*if(data.length==1){
-        console.log("JOIN CRETE TABLE")
-        createTable(data[0])
+    if(count>0)
+        await resetTable();
+
+    switch (pharse-1){
+        case 0:
+            table_nr=0;
+            break;
+        case 1:
+            table_nr=1;
+            break;
+        case 2:
+            table_nr=1;
+            break;
+        case 3:
+            table_nr=2;
+            break;
+        case 4:
+            table_nr=3;
+            console.log(settask[table_nr]);
+            break;
     }
-    else {
-        console.log(data[0])
-        data.forEach((tables) => {
-            tables.forEach((row) => {
-                row.forEach((col) => {
 
-                })
-            })
+    let data = settask[table_nr];
 
 
-        })
-    }*/
-    console.table(settask)
-    console.log(pharse)
+    count = 0; //Counter for id
+    width = 80;
+    height = 30;
+    x_pos = 5;
+    y_pos = 5;
+    a_col = 0;
+    a_row = 0;
+
     data.forEach((tables)=>{
+
         createTable(tables);
+
+        a_row=0;
+        a_col=0;
+        x_pos+=tables[0].length*width+5;
+
+
     })
 
 }
 
-const createArray = (task) =>{
+const resetTable = () => {
 
-    var array_col = [];
-    var array = []
-    var rowHash = task[0];
-    var temp_count=0;
-
-
-    for(let key in rowHash){
-        array_col.push(key);
-    }
-
-    var arr_length = array_col.length;
-
-    for(let i=0;i<task.length;i++) {
-        for (let j = 0; j < arr_length; j++) {
-            array_col.push(task[i][array_col[j]]);
-        }
-    }
-
-    for(let i=0; i<task.length+1; i++) {
-        array[i] = [];
-        for (let j = 0; j <arr_length;  j++) {
-
-            array[i][j] = array_col[temp_count];
-            temp_count++;
-        }
+    for(let i=0;i<count;i++){
+        cell = svg.getElementById('rect'+i);
+        tex = svg.getElementById('text'+i);
+        svg.removeChild(cell);
+        svg.removeChild(tex);
 
     }
-
-    return array;
-
-
 }

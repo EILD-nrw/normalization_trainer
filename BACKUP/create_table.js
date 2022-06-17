@@ -165,11 +165,7 @@ document.addEventListener('DOMContentLoaded',function() {
 
             }
 
-
-
             return array;
-
-
     }
 
   document.querySelector('svg').addEventListener('click',selectZell)

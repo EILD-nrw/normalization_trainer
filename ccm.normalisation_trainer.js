@@ -30,8 +30,8 @@
             "database":["ccm.load",{"url":"./backend/database.js","type":"module"}],
             "phrases":["ccm.load",{"url":"./frontend/resources/resources.js#phrases","type":"module"}],
             "relation":["ccm.load",{"url":"./backend/table.js"}],
-            "solution":["ccm.load",{"url":"./backend/solution.js"}],
             "generateion":["ccm.load",{"url":"./backend/generatetask.js"}],
+            "solution":["ccm.load",{"url":"./backend/solution.js"}],
             "text":"Normalisation Trainer"
         },
         Instance: function (){
@@ -133,11 +133,23 @@
                     }
                 },
 
-                onNext: () =>{
-                    if(phrase_nr === this.number) return;
+                onNext: async () =>{
+                   if(phrase_nr === this.number) return;
+                        reset();
                         phrases.shift(); nextPhrase();
                         this.onchange && this.onchange({event: 'next', instance:this,phrase:phrase_nr});
+
+
+
                 },
+
+                onSolution: () =>{
+                    check_solution(this.database.shematas[0],phrase_nr,getSelectMatrix())
+                },
+
+                onShowSolution: () =>{
+                    show_solution(this.database.shematas[0],phrase_nr);
+                }
 
             }
 
@@ -155,8 +167,9 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-                createTask(get_example(),phrase_nr)
+                createTask(get_example(),phrase_nr);
                 this.element.querySelector('svg').addEventListener('click',events.selecetCell);
+
             }
 
             const reset = () =>{

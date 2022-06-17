@@ -107,6 +107,10 @@ export const atomar = [
     {
         "noAtomar":"price",
         "attributs":["price","currency"]
+    },
+    {
+        "noAtomar":"room",
+        "attributs":["buildings","rooms"]
     }
 ]
 /**
@@ -128,29 +132,43 @@ export const functional = [
  *  eneratedTasks holds fixed constructs/examples that are to be created.
  * @type {{timetable: string[]}[]}
  */
-export const generatetTaskt = [
+export const shematas = [
     {
-    "nnf": ["persID","name","VorlID","lecture","buildings","rooms","street"],
-    "1nnf":["persID","firstname","lastname","VorlID","lecture","buildings","rooms","street"],
-    "2nnf":[
-        ["persID","firstname","lastname"],
+        "nnf": ["persID","name","VorlID","lecture","buildings","rooms","street"],
+        "1nnf":["persID","name","VorlID","lecture","buildings","rooms","street"],
+        "2nnf":[
+        ["persID","name"],
         ["persID","VorlId","lecture"],
         ["VorlId","buildings","rooms","street"]
     ],
-    "3nnf":[
-        ["persID","firstname","lastname"],
+        "3nnf":[
+            ["persID","name"],
         ["persID","VorlId","lecture"],
         ["VorlId","buildings","rooms"],
         ["rooms","street"]
         ],
-    "bcnf":[
-        ["persID","firstname","lastname"],
+        "bcnf":[
+            ["persID","name"],
         ["persID","VorlId"],
         ["VorlId","lecture"],
         ["VorlId","buildings","rooms"],
         ["rooms","street"]
+        ],
+        "atomar":["room"],
+        "functional":[
+            {
+                "pk":"persID",
+                "at":["name"]
+            },
+            {
+                "pk":"VorlID",
+                "at":["lecture","buildings","rooms"]
+            },
+            {
+                "pk":"building",
+                "at":["street"]
+            }
         ]
-    },
-    {}
+    }
 ]
 
