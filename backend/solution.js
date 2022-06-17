@@ -85,32 +85,50 @@ const findDuplicates = (value, index, self) =>{
 const checkDublicateIdIsEqual = (dup,table_arr,table_header) =>{
 
     let main_pk = db.start_pk;
-    let func_pk_arr = []
+    //Zu vergleichende Spalten
+    let func_pk_arr = [];
+    let db_func_arr = db.functional;
 
-    functional_arr.forEach((func)=>{
-        if(func.pk==main_pk){
-            func.at.forEach((at)=>{
+
+    let id = table_header.indexOf(main_pk);
+    db_func_arr.forEach((col)=>{
+        if(col.pk == main_pk){
+            col.at.forEach((at)=>{
                 func_pk_arr.push(table_header.indexOf(at))
             })
         }
     })
 
+    func_pk_arr.forEach((col)=>{
+        for(let i = 0;i<table_arr[col].length;i++)
+        {
+            dup.forEach((dup1)=>{
+                if(table_arr[col][i]==dup1){
+                    for(let j=i;j<table_arr[col].length;j++){
+                        if(table_arr[col][j]==dup1){
+                           if(table_arr[id][i]!=table_arr[id][j]){
+                               dup = dup.filter(function (f) {return f !== dup1})
+                           }
+                        }
+                    }
+                }
+
+            })
+        }
+    })
 
 
+    console.log(dup);
+    return dup;
 
-
-    return true;
 }
 
-const nf2_redunance = (count) => {
+const   nf2_redunance =  async (count) =>  {
 
     let temp_arr = [];
     let table_arr = [];
 
-
     let table_header = db['1nnf'];
-
-
 
     //create Mul-Array
     for(let i=0;i<table_header.length;i++)
@@ -123,23 +141,21 @@ const nf2_redunance = (count) => {
         table_arr.push(content)
     }
 
+
     let duplicate = table_arr.filter(findDuplicates)
+    duplicate = checkDublicateIdIsEqual(duplicate,temp_arr,table_header)
+
     let tmp=0;
     table_arr.forEach((cell)=>{
         solution_arr[tmp]=0;
         duplicate.forEach((dup)=>{
             if(dup==cell){
-                if(checkDublicateIdIsEqual(dup,temp_arr,table_header))
-                    solution_arr[tmp]=1;
+                solution_arr[tmp]=1;
             }
 
         })
         tmp++;
     })
-
-
-
-    console.log(solution_arr)
 
 
 
