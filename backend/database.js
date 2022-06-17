@@ -157,15 +157,18 @@ export const shematas = [
         "functional":[
             {
                 "pk":"persID",
-                "at":["name"]
+                "at":["name"],
+                "tat":[]
             },
             {
                 "pk":"VorlID",
-                "at":["lecture","buildings","rooms"]
+                "at":["lecture","buildings","rooms"],
+                "tat":["street"]
             },
             {
                 "pk":"building",
-                "at":["street"]
+                "at":["street"],
+                "tat":[]
             }
         ],
         "start_pk":"persID"

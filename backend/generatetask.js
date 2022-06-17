@@ -29,7 +29,7 @@ const get_example = () => {
         ["12462", "Schmidt", "1421", "WWS I", "C 250", "Blechhammer"]
     ];
     let nf1 = [
-        ["persID", "name", "VorlID", "lecture", "gebäude","room", "street"],
+        ["persID", "name", "VorlID", "lecture", "buildings","rooms", "street"],
         ["13478", "Diloo", "1238", "Datenbanken", "B"," 431", "Am Schwimmbad"],
         ["13478", "Diloo", "1153", "Englisch I", "D"," 123", "Blechhammer"],
         ["12481", "Wilke", "1352", "Analysis", "C"," 231", "Blechhammer"],
@@ -57,7 +57,7 @@ const get_example = () => {
         ["12462","1421","WWS I"]
     ]
     let nf2_lehrveranstalltung = [
-        [ "VorlID", "gebäude","rooms", "street"],
+        [ "VorlID", "buildings","rooms", "street"],
         ["1238", "B"," 431", "Am Schwimmbad"],
         ["1153", "D"," 123", "Blechhammer"],
         ["1352",  "C"," 231", "Blechhammer"],

@@ -54,6 +54,10 @@ const show_solution = (database,phrase_nr) =>{
         let cell = svg.getElementById('rect'+index);
             if(f_cell==1)
                 cell.setAttribute('fill','lightgreen');
+            if(f_cell==2)
+                cell.setAttribute('fill','lightblue')
+            if(f_cell==3)
+                cell.setAttribute('fill','lightviolett')
     })
 
 
@@ -70,7 +74,6 @@ const nf1 = (count) => {
 
             solution_arr[i]=0;
             atomar_arr.forEach((att)=> {
-                console.log(att)
                 if(att == cell.textContent)
                    solution_arr[i]=1;
             })
@@ -112,11 +115,9 @@ const checkDublicateIdIsEqual = (dup,table_arr,table_header) =>{
                         }
                     }
                 }
-
             })
         }
     })
-
 
     console.log(dup);
     return dup;
@@ -160,5 +161,48 @@ const   nf2_redunance =  async (count) =>  {
 
 
 }
-const nf2_functional = (count) => {}
+
+const nf2_functional = (count) => {
+
+    let check_arr = []
+    let f_check = []
+    functional_arr.forEach((items,index)=>{
+       f_check.push(index);
+        check_arr.push(items.pk)
+        items.at.forEach((atItems)=>{
+            f_check.push(index);
+            check_arr.push(atItems)
+        })
+    })
+
+    check_arr.forEach((item,index)=>{
+        functional_arr.forEach((fItems,fIndex)=>{
+          fItems.tat.forEach((tatItem)=>{
+                if(item==tatItem)
+                    f_check[index]=fIndex;
+          })
+        })
+    })
+
+
+
+
+    for(let i =0;i<count;i++){
+
+        let cell = svg.getElementById('text'+i).textContent;
+        solution_arr[i]=0;
+        check_arr.forEach((col,index)=>{
+            if(cell==col){
+                    solution_arr[i] = (f_check[index] + 1);
+
+            }
+            })
+    }
+
+    console.log(solution_arr)
+
+}
+
 const nf3_transitiv = (count) => {}
+
+const bc_functional = () => {}
