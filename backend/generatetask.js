@@ -1,20 +1,148 @@
-const generade = (data) => {
+let db_generate;
+let shema_nr;
+let taskArray;
+let number_of_rows = 7;
+let METAarr
 
-    console.log("TEST")
-    console.log(data.generatetTaskt.length)
+
+
+const generade = async () => {
+
+    taskArray = [];
+    await fill_nf1_array();
+    await fill_nnf_array();
+    await fill_nf2_tables();
+    await fill_nf3_tables();
+}
+
+const getGeneradeExample =  async (database,shema) => {
     /**
-     * TODO:: Beispiel von Database nehmen
-     *        Beispiel mit daten füllen
-     *        Beispiel bis zum BCNF Form füllen
-     *        InCompakten Array Packen
+     * TODO:: SHEMA von Database nehmen
+     *        SHEMA mit daten aus Database füllen
      */
+    db_generate = database;
+    shema_nr = shema;
+    await generade();
 
+    return taskArray;
+
+}
+
+const rand = (max) => {
+    return Math.floor(Math.random()*max.length);
+}
+
+const checkIdExist = () => {}
+const createNoAtomar = () => {}
+const getData = (dataType) =>{
+
+    let dataTypeArr = db_generate[dataType];
+    return dataTypeArr[rand(dataTypeArr)]
+    return dataType
+
+
+}
+const eliminateDuplicates = () => {}
+
+const fill_nnf_array = () => {
+
+
+    let nnf_header = db_generate.shematas[shema_nr]['nnf'];
+    let nnf_arr = []
+    taskArray[0]=[]
+
+    for(let i=0;i<number_of_rows;i++){
+        nnf_arr[i] = []
+       for(let  j=0;j<nnf_header.length;j++){
+           if(i==0){
+               nnf_arr[i][j]=nnf_header[j];
+           }
+           else{
+               let noAtomarAtt = (db_generate.shematas[shema_nr]['noAtomar'])
+               if(noAtomarAtt==nnf_header[j])
+                        nnf_arr[i][j]=METAarr[i][j]+" "+METAarr[i][j+1]
+                   else
+                        nnf_arr[i][j]=METAarr[i][j];
+           }
+       }
+    }
+
+    taskArray[0][0]=nnf_arr;
 
 }
 
 
-const rand = () => {}
-const create_redundazce = () => {}
+const fill_nf1_array = () => {
+
+    let nnf_header = db_generate.shematas[shema_nr]['1nnf'];
+    let nf_arr = []
+    taskArray[1]=[]
+
+    for(let i=0;i<number_of_rows;i++){
+        nf_arr[i] = []
+        for(let  j=0;j<nnf_header.length;j++){
+            if(i==0){
+                nf_arr[i][j]=nnf_header[j];
+            }
+            else{
+                nf_arr[i][j]=getData(nnf_header[j]);
+            }
+        }
+    }
+    taskArray[1][0]=nf_arr;
+    METAarr=nf_arr;
+
+
+
+}
+const fill_nf2_tables = () => {
+
+    let nnf_header = db_generate.shematas[shema_nr]['2nnf'];
+    let nf_arr = []
+    let table_count=0;
+    taskArray[2]=[]
+
+    nnf_header.forEach((tables)=>{
+        for(let i=0;i<number_of_rows;i++){
+            nf_arr[i]=[]
+            for(let j=0;j<tables.length;j++){
+                if(i==0){
+                    nf_arr[i][j]=tables[j]
+                }
+                    nf_arr[i][j]=METAarr[i][j];
+            }
+        }
+        taskArray[2][table_count]=nf_arr
+        table_count++;
+    })
+
+}
+
+const fill_nf3_tables = () => {
+
+    let nnf_header = db_generate.shematas[shema_nr]['3nnf'];
+    let nf_arr = []
+    let table_count=0;
+    taskArray[3]=[]
+
+    nnf_header.forEach((tables)=>{
+        for(let i=0;i<number_of_rows;i++){
+            nf_arr[i]=[]
+            for(let j=0;j<tables.length;j++){
+                if(i==0){
+                    nf_arr[i][j]=tables[j]
+                }
+                    nf_arr[i][j]=METAarr[i][j]
+            }
+        }
+
+        taskArray[3][table_count]=nf_arr
+        table_count++;
+    })
+
+}
+
+
 const get_example = () => {
 
     let test_example =  []
@@ -83,7 +211,7 @@ const get_example = () => {
         ["12462","1421","WWS I"]
     ]
     let nf3_lehrveranstalltung = [
-        [ "VorlID", "gebäude","rooms"],
+        [ "VorlID", "buildings","rooms"],
         ["1238", "B"," 431"],
         ["1153", "D"," 123"],
         ["1352",  "C"," 231"],
@@ -91,7 +219,7 @@ const get_example = () => {
         ["1421",  "C"," 250"]
     ]
     let nf3_gebauede = [
-        [ "gebäude", "street"],
+        [ "buildings", "street"],
         [ "B", "Am Schwimmbad"],
         [ "D", "Blechhammer"],
         [ "C", "Blechhammer"],
@@ -101,6 +229,7 @@ const get_example = () => {
 
     test_example[0] = [];
     test_example[0][0]=nnf;
+    console.log(nnf);
 
     test_example[1] = []
     test_example[1][0]=nf1;

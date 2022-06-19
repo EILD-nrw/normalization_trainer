@@ -4,6 +4,8 @@
  * @type {string[]}
  */
 
+export const persID = ["4683","4598","1234","7564","3465","7898"]
+export const VorlID = ["1238","1153","1352","1543","1153","7888"]
 export const firstName = [
     "Harry","Ross",
     "Bruce","Cook",
@@ -41,7 +43,7 @@ export const lecture = [
     "Betriebsysteme","BWL",
     "Mythologie","Astronomie",
     "Geschichte"]
-export const streets = [
+export const street = [
     "Ligusterweg","Waldstraße",
     "Wall-Steet","Hintern Bühl",
     "Breitestraße","Am Waldrand",
@@ -133,31 +135,31 @@ export const functional = [
  */
 export const shematas = [
     {
-        "nnf": ["persID","name","VorlID","lecture","buildings","rooms","street"],
-        "1nnf":["persID","name","VorlID","lecture","buildings","rooms","street"],
+        "nnf": ["persID","lastName","VorlID","lecture","rooms","street"],
+        "1nnf":["persID","lastName","VorlID","lecture","buildings","rooms","street"],
         "2nnf":[
-        ["persID","name"],
+        ["persID","lastName"],
         ["persID","VorlId","lecture"],
         ["VorlId","buildings","rooms","street"]
     ],
         "3nnf":[
-            ["persID","name"],
-        ["persID","VorlId","lecture"],
-        ["VorlId","buildings","rooms"],
-        ["rooms","street"]
+            ["persID","lastName"],
+            ["persID","VorlId","lecture"],
+            ["VorlId","buildings","rooms"],
+            ["rooms","street"]
         ],
         "bcnf":[
-            ["persID","name"],
-        ["persID","VorlId"],
-        ["VorlId","lecture"],
-        ["VorlId","buildings","rooms"],
-        ["rooms","street"]
+            ["persID","lastName"],
+            ["persID","VorlId"],
+            ["VorlId","lecture"],
+            ["VorlId","buildings","rooms"],
+            ["rooms","street"]
         ],
-        "atomar":["room"],
+        "noAtomar":["rooms"],
         "functional":[
             {
                 "pk":"persID",
-                "at":["name"],
+                "at":["lastName"],
                 "tat":[]
             },
             {
@@ -166,7 +168,7 @@ export const shematas = [
                 "tat":["street"]
             },
             {
-                "pk":"building",
+                "pk":"buildings",
                 "at":["street"],
                 "tat":[]
             }

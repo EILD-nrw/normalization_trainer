@@ -11,9 +11,6 @@ let parent;
 
 const createTable = (task) => {
 
-
-
-
     task.forEach((row)=>{
         row.forEach((col)=>{
             createRectangle(width*a_col+x_pos,y_pos+a_row*height,width,height)
@@ -105,6 +102,8 @@ const  createTask = async (settask,pharse) => {
             break;
     }
 
+    console.log(table_nr)
+    console.log(settask[table_nr])
     let data = settask[table_nr];
 
 

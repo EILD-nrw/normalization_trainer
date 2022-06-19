@@ -3,7 +3,6 @@ let atomar_arr;
 let functional_arr;
 let db;
 
-
 const check_solution = (database,phrase_nr,user_solution) =>{
 
 
@@ -26,7 +25,7 @@ const createSolution = (database,phrase_nr) => {
     solution_arr = null;
     solution_arr = [];
     db = database;
-    atomar_arr = database.atomar;
+    atomar_arr = database.noAtomar;
     functional_arr = database.functional;
 
 
@@ -57,13 +56,12 @@ const show_solution = (database,phrase_nr) =>{
             if(f_cell==2)
                 cell.setAttribute('fill','lightblue')
             if(f_cell==3)
-                cell.setAttribute('fill','lightviolett')
+                cell.setAttribute('fill','grey')
     })
 
 
 
 }
-
 
 const nf1 = (count) => {
 
@@ -119,12 +117,11 @@ const checkDublicateIdIsEqual = (dup,table_arr,table_header) =>{
         }
     })
 
-    console.log(dup);
     return dup;
 
 }
 
-const   nf2_redunance =  async (count) =>  {
+const nf2_redunance =  async (count) =>  {
 
     let temp_arr = [];
     let table_arr = [];
@@ -162,30 +159,37 @@ const   nf2_redunance =  async (count) =>  {
 
 }
 
+//Check attribut exist in folder
+const attExist = (cItem,arr)=>{
+
+    let checkCount=0;
+    arr.forEach((item)=>{
+        if(item==cItem)
+            checkCount++;
+    })
+
+    return checkCount;
+
+}
+
 const nf2_functional = (count) => {
 
     let check_arr = []
     let f_check = []
     functional_arr.forEach((items,index)=>{
-       f_check.push(index);
-        check_arr.push(items.pk)
-        items.at.forEach((atItems)=>{
+        if(attExist(items.pk,check_arr)==0){
+            check_arr.push(items.pk)
             f_check.push(index);
-            check_arr.push(atItems)
-        })
+            items.at.forEach((faItem)=>{
+                check_arr.push(faItem);
+                f_check.push(index);
+            })
+            items.tat.forEach((tatItem)=>{
+                check_arr.push(tatItem);
+                f_check.push(index);
+            })
+        }
     })
-
-    check_arr.forEach((item,index)=>{
-        functional_arr.forEach((fItems,fIndex)=>{
-          fItems.tat.forEach((tatItem)=>{
-                if(item==tatItem)
-                    f_check[index]=fIndex;
-          })
-        })
-    })
-
-
-
 
     for(let i =0;i<count;i++){
 
@@ -194,15 +198,53 @@ const nf2_functional = (count) => {
         check_arr.forEach((col,index)=>{
             if(cell==col){
                     solution_arr[i] = (f_check[index] + 1);
-
-            }
+                }
             })
-    }
-
-    console.log(solution_arr)
-
+        }
 }
 
-const nf3_transitiv = (count) => {}
+const nf3_transitiv = (count) => {
+
+ let getTransPK
+ let getTransAtt=[]
+ let attSolutionArr = []
+
+
+    //get Transitiv Attribut
+ functional_arr.forEach((TransAtt)=>{
+     if(TransAtt.tat.length>=1) {
+         getTransAtt = TransAtt.tat;
+     }
+ })
+
+
+ //get PK from Atribut
+   getTransAtt.forEach((TransPK)=>{
+       functional_arr.forEach((att)=>{
+           att.at.forEach((items)=>{
+               if(items==TransPK && att.pk!=getTransPK) {
+                   attSolutionArr.push(items)
+                   console.log(att.pk)
+                   attSolutionArr.push(att.pk)
+               }
+           })
+       })
+   })
+
+    for(let i =0;i<count;i++){
+
+        let cell = svg.getElementById('text'+i).textContent;
+        solution_arr[i]=0;
+        attSolutionArr.forEach((col)=>{
+            if(cell==col){
+                solution_arr[i] = 1;
+
+            }
+        })
+    }
+
+
+
+}
 
 const bc_functional = () => {}

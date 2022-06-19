@@ -60,17 +60,24 @@
              * @type {Object}
              */
             let task_data;
-
+            /*CREATE TABLE*/
+            let task_arr;
              /**
              * when the instance is created, wenn all dependencies have been resolved and before the dependent sub-instances are initialized and ready
              *  @returns {Promise<void>}
              */
+            let shema;
+
             this.init = async() =>{
 
                 $ = Object.assign({},this.ccm.helper,this.helper);
                 $.use(this.ccm);
 
+
                 this.modal.title = "TEST";
+
+                shema = Math.floor(Math.random()*this.database.shematas.length)
+                task_arr = await getGeneradeExample(this.database,shema);
 
                 if($.isObject(this.phrases))
                     this.phrases = Object.values(this.phrases).map(phrases=>{delete phrases.key; return phrases; });
@@ -129,17 +136,14 @@
                         reset();
                         phrases.shift(); nextPhrase();
                         this.onchange && this.onchange({event: 'next', instance:this,phrase:phrase_nr});
-
-
-
                 },
 
                 onSolution: () =>{
-                    check_solution(this.database.shematas[0],phrase_nr,getSelectMatrix())
+                    check_solution(this.database.shematas[shema],phrase_nr,getSelectMatrix())
                 },
 
                 onShowSolution: () =>{
-                    show_solution(this.database.shematas[0],phrase_nr);
+                    show_solution(this.database.shematas[shema],phrase_nr);
                 }
 
             }
@@ -158,7 +162,9 @@
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-                createTask(get_example(),phrase_nr);
+                //createTask(get_example(),phrase_nr);
+                createTask(task_arr,phrase_nr)
+                //getGeneradeExample(this.database,shema)
                 this.element.querySelector('svg').addEventListener('click',events.selecetCell);
 
             }
