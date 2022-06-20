@@ -76,8 +76,8 @@
 
                 this.modal.title = "TEST";
 
-                shema = Math.floor(Math.random()*this.database.shematas.length)
-                task_arr = await getGeneradeExample(this.database,shema);
+
+                task_arr = await getGeneradeExample(this.database);
 
                 if($.isObject(this.phrases))
                     this.phrases = Object.values(this.phrases).map(phrases=>{delete phrases.key; return phrases; });
