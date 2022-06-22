@@ -98,12 +98,10 @@ const  createTask = async (settask,pharse) => {
             break;
         case 4:
             table_nr=3;
-            console.log(settask[table_nr]);
             break;
     }
 
-    console.log(table_nr)
-    console.log(settask[table_nr])
+
     let data = settask[table_nr];
 
 

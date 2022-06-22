@@ -55,7 +55,7 @@ export const Hausnummer = [
     "123","142",
     "23","56",
     "50","50a"]
-export const Ort = [
+export const Stadt = [
     "Köln","Bonn",
     "Berlin","Duisburg",
     "New York","London",
@@ -86,57 +86,91 @@ export const PLZ = [
     "49896","41684",
     "49898","12168"
 ]
-export const gebäudename = ["A","B","C"]
-export const Raum = ["024","486","483","412","448"]
-
+export const OrtID = ["A","B","C"]
+export const Räume = ["024","486","483","412","448"]
+export const Art_Nr = ["12254","12268","12068","12298","12385"]
+export const FarzugID = ["024","486","483","412","448"]
+export const alter = ["18","23","15","12"]
+export const Tag = ["Mo","Di","Mi","Do","Fr","Sa","So"]
+export const Zeit = ["10:30","12:10","15:15","16:30","19:30"]
+export const Anzahl = ["5","3","4","8","10","12"]
+export const Platz = ["A13","B12","A10","C12","D08"]
+export const Klasse = ["1","2","Holzklasse","Business"]
+export const Hersteller = ["Samsung","Apple","Xiaomi","Huawei"]
 /**
  * Entitys
  */
+
+/**
+ * 3 col is an atomar transitiv Attribut
+ * @type {string[][]}
+ */
+export const trans = [
+    ["PLZ","Stadt","Ort"],
+    ["Gebäude","Strasse"],
+    ["Hersteller","Art_Nr"]
+]
+
 export const entitys = [
     {
         "entityname":"Student",
         "pk":"persID",
-        "attributs":["name","alter","strasse","Ort"],
-        "atomar":[{
-            "name":["vorname","nachname"],
-            "addresse":["strasse","hausnummer"],
-            "Ort":["PlZ","Ort"]
-        }],
+        "attributs":["name","alter","addresse","Ort"],
+        "atomar":[
+            ["name","vorname","nachname"],
+            ["addresse","strasse","hausnummer"],
+            ["Ort","PlZ","Stadt"],
+        ],
         "Synonym":["prof","kunde","künstler"]
     },
     {
         "entityname":"Veranstallung",
         "pk":"Vorl",
-        "attributs":["lecture","Gabäude","Raum","Zeit","Tag"],
-        "atomar":[{
-            "Ort":["Gabäude","Raum","Vorlesung","Konzert"]
-        }],
-        "Synonym":["Vorlseung","Veranstalung"]
+        "attributs":["lecture","Gebäude","Zeit","Tag"],
+        "atomar":[
+            ["Raum","Gebäude","Räume"]
+        ],
+        "Synonym":["Vorlseung","Veranstalung","Vorlesung","Konzert"]
     },
     {
         "entityname":"Produkt",
         "pk":"Art_Nr",
-        "attributs":["Bezeichnung","Preis","Anzahl"],
-        "atomar":[{
-            "Preis":["Betrag","Wärung"]
-        }],
+        "attributs":["Bezeichnung","Preis","Anzahl","Hersteller"],
+        "atomar":[
+            ["Preis","Betrag","Wärung"]
+        ],
         "Synonym":["Flug","Produkt","Ticket"]
     },
     {
         "entityname":"Gebäude",
         "pk":"OrtID",
-        "attributs":["gebäudename","Strasse","Ort","Hausnummer"],
-        "atomar":[{
-            "anschrift": ["Strasse","Hausnummer"],
-            "Ort":["Ort","PLZ"]
-        }],
+        "attributs":["anschrift","Ort","Hausnummer"],
+        "atomar":[
+            ["anschrift","Strasse","Hausnummer"],
+            ["Ort","Stadt","PLZ"]
+        ],
         "Synonym":["Arena","Gebäude"]
     },
     {
         "entityname":"Fahrzeug",
         "pk":"FarzugID",
         "attributs":["Platz","Klasse"],
-        "atomar":["Flugzeug","Schiff","Zug"]
+        "atomar":[],
+        "Synonym":["Flugzeug","Schiff","Zug"]
+    }
+]
+/**
+ * Kombination
+ *
+ */
+export const combination = [
+    {
+        "e1":"Student",
+        "e2":"Veranstallung"
+    },
+    {
+        "e1":"Student",
+        "e2":"Produkt"
     }
 ]
 
