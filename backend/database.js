@@ -1,13 +1,11 @@
-
-/**
- * attributes of an relation
- * @type {string[]}
- */
-
-export const persID = ["4683","4598","1234","7564","3465","7898"]
-export const Vorl = ["1238","1153","1352","1543","1153","7888"]
-export const vorname = [
-    "Harry","Ross",
+export const MatrkNr = ["1235","48934","1358","4896","48651","1562"];
+export const PersNr = MatrkNr;
+export const BesNr = MatrkNr;
+export const Vorlnr = MatrkNr;
+export const Veransnr = MatrkNr;
+export const konzNr = MatrkNr;
+export const SpsNr = MatrkNr;
+export const vorname = [ "Harry","Ross",
     "Bruce","Cook",
     "Carolyn","Morgan",
     "Albert","Walker",
@@ -20,10 +18,8 @@ export const vorname = [
     "Henry","Simmons",
     "Michelle","Perry",
     "Frank","Butler",
-    "Shirley"
-]
-export const nachname = [
-    "Ruth","Jackson",
+    "Shirley"];
+export const nachname = ["Ruth","Jackson",
     "Debra","Allen",
     "Gerald","Harris",
     "Raymond","Carter",
@@ -36,143 +32,60 @@ export const nachname = [
     "Eric","Long",
     "Amanda","Scott",
     "Teresa","Diaz",
-    "Wanda","Thomas"
-]
-export const lecture = [
-    "Datenbankem", "IT-Sicherheit",
-    "Betriebsysteme","BWL",
-    "Mythologie","Astronomie",
-    "Geschichte"]
-export const strasse = [
-    "Ligusterweg","Waldstraße",
-    "Wall-Steet","Hintern Bühl",
-    "Breitestraße","Am Waldrand",
-]
-export const Hausnummer = [
-    "5","1",
-    "2","3",
-    "12","45",
-    "123","142",
-    "23","56",
-    "50","50a"]
-export const Stadt = [
-    "Köln","Bonn",
-    "Berlin","Duisburg",
-    "New York","London",
-    "Madrid","Bree",
-    "Gondor","Hogsmeade"
-]
-export const Bezeichnung = [
-    "Akkuschrauber","Schraubendreher",
-    "Hammer","Nägel",
-    "Zauberkessel","Rennbesen",
-    "Handyhülle","Ladekabel",
-    "Smartphone","Kabel"
-]
-export const Betrag = [
-    "5","5.40",
-    "2.40","1.20",
-    "12","9.10",
-    "19.8","2.10"
-]
-export const Wärung = [
-    "EUR","USD",
-    "YEN","CHF",
-    "GBP"
-]
-export const PLZ = [
-    "50999","10235",
-    "12103","12161",
-    "49896","41684",
-    "49898","12168"
-]
-export const OrtID = ["A","B","C"]
-export const Räume = ["024","486","483","412","448"]
-export const Art_Nr = ["12254","12268","12068","12298","12385"]
-export const FarzugID = ["024","486","483","412","448"]
-export const alter = ["18","23","15","12"]
-export const Tag = ["Mo","Di","Mi","Do","Fr","Sa","So"]
-export const Zeit = ["10:30","12:10","15:15","16:30","19:30"]
-export const Anzahl = ["5","3","4","8","10","12"]
-export const Platz = ["A13","B12","A10","C12","D08"]
-export const Klasse = ["1","2","Holzklasse","Business"]
-export const Hersteller = ["Samsung","Apple","Xiaomi","Huawei"]
-/**
- * Entitys
- */
+    "Wanda","Thomas"];
+export const Vorlesung = ["Datenbanken","IT-Sicherheit","Netze","Mathematik","Weltherschaft"];
+export const Veranstaltung = ["FIBU","Buchmesse","Gamescom","ComicCon","JavaLand","DOAG0"];
+export const Konzert =  ["Billy Elish","Queen","ABBA","Elton John","Linking Park","Vincent Wise","Backstreet Boys"];
+export const Sportspiel = ["Fußball","Dart","Feldhockey","Eishockey","Basketball","Football"];
+export const raum = ["450","123","486","489","893","4889","789","534"];
+export const Gebäude = ["A","B","C","D"];
+export const Stadion = ["Köln Arena","Mercedes Arena","FC Stadion","Koloseum"];
+export const Bühne = ["Open Air","Köln Arena","Opern Haus","Alte Flora","Tanzbrunnen"];
+export const Hausnummer = ["50","12a","48","483","45-50"];
+export const Straße = ["Ligusterweg","Am Berg","Landstraße","Hauptstraße"];
 
-/**
- * 3 col is an atomar transitiv Attribut
- * @type {string[][]}
- */
-export const trans = [
-    ["PLZ","Stadt","Ort"],
-    ["Gebäude","Strasse"],
-    ["Hersteller","Art_Nr"]
-]
 
-export const entitys = [
-    {
-        "entityname":"Student",
-        "pk":"persID",
-        "attributs":["name","alter","addresse","Ort"],
-        "atomar":[
-            ["name","vorname","nachname"],
-            ["addresse","strasse","hausnummer"],
-            ["Ort","PlZ","Stadt"],
-        ],
-        "Synonym":["prof","kunde","künstler"]
-    },
-    {
-        "entityname":"Veranstallung",
-        "pk":"Vorl",
-        "attributs":["lecture","Gebäude","Zeit","Tag"],
-        "atomar":[
-            ["Raum","Gebäude","Räume"]
-        ],
-        "Synonym":["Vorlseung","Veranstalung","Vorlesung","Konzert"]
-    },
-    {
-        "entityname":"Produkt",
-        "pk":"Art_Nr",
-        "attributs":["Bezeichnung","Preis","Anzahl","Hersteller"],
-        "atomar":[
-            ["Preis","Betrag","Wärung"]
-        ],
-        "Synonym":["Flug","Produkt","Ticket"]
-    },
-    {
-        "entityname":"Gebäude",
-        "pk":"OrtID",
-        "attributs":["anschrift","Ort","Hausnummer"],
-        "atomar":[
-            ["anschrift","Strasse","Hausnummer"],
-            ["Ort","Stadt","PLZ"]
-        ],
-        "Synonym":["Arena","Gebäude"]
-    },
-    {
-        "entityname":"Fahrzeug",
-        "pk":"FarzugID",
-        "attributs":["Platz","Klasse"],
-        "atomar":[],
-        "Synonym":["Flugzeug","Schiff","Zug"]
-    }
-]
 /**
  * Kombination
  *
  */
-export const combination = [
+export const entity = [
     {
-        "e1":"Student",
-        "e2":"Veranstallung"
+        "entityName":"Person",
+        "pk":["MatrkNr","PersNr","BesNr"],
+        "at":[["name","nachname"]],
+        "atomar":[["name","vorname","nachname"]],
+
     },
     {
-        "e1":"Student",
-        "e2":"Produkt"
+        "entityName":"Veranstaltung",
+        "pk":["Vorlnr","Veransnr","konzNr","SpsNr"],
+        "at":[["Vorlesung","Verasntaltung","Konzert","Sportspiel"],["raum","platz"]],
+        "atomar":[["raum","Gebäude","raum"],["platz","Block","platz"]]
+    },
+    {
+        "entityName":"Ort",
+        "pk":["Gebäude","Konzerthallee","Stadion"],
+        "at":[["Straße"]],
+        "atomar":[["Straße","Straße","Hausnummer"]]
     }
 ]
+
+
+
+export const combination = [
+    {
+        "metaSchema":["Person","Veranstaltung","Ort"],
+        "nnf":["pk1","a1","pk2","a2","pk3","a3"],
+        "nf2":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3","a3"]],
+        "nf3":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3"],["pk3","a3"]],
+        "nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2","pk3"],["pk3","a3"],["pk2","a2"]]
+    }
+
+
+]
+
+
 
 
 

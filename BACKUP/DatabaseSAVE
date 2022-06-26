@@ -1,0 +1,167 @@
+
+/**
+ * attributes of an relation
+ * @type {string[]}
+ */
+
+export const persID = ["4683","4598","1234","7564","3465","7898"]
+export const VerID = ["1238","1153","1352","1543","1153","7888"]
+export const vorname = [
+    "Harry","Ross",
+    "Bruce","Cook",
+    "Carolyn","Morgan",
+    "Albert","Walker",
+    "Randy","Reed",
+    "Larry","Barnes",
+    "Lois","Wilson",
+    "Jesse","Campbell",
+    "Ernest","Rogers",
+    "Theresa","Patterson",
+    "Henry","Simmons",
+    "Michelle","Perry",
+    "Frank","Butler",
+    "Shirley"
+]
+export const nachname = [
+    "Ruth","Jackson",
+    "Debra","Allen",
+    "Gerald","Harris",
+    "Raymond","Carter",
+    "Jacqueline","Torres",
+    "Joseph","Nelson",
+    "Carlos","Sanchez",
+    "Ralph","Clark",
+    "Jean","Alexander",
+    "Stephen","Roberts",
+    "Eric","Long",
+    "Amanda","Scott",
+    "Teresa","Diaz",
+    "Wanda","Thomas"
+]
+export const lecture = [
+    "Datenbankem", "IT-Sicherheit",
+    "Betriebsysteme","BWL",
+    "Mythologie","Astronomie",
+    "Geschichte"]
+export const strasse = [
+    "Ligusterweg","Waldstraße",
+    "Wall-Steet","Hintern Bühl",
+    "Breitestraße","Am Waldrand",
+]
+export const hausnummer = [
+    "5","1",
+    "2","3",
+    "12","45",
+    "123","142",
+    "23","56",
+    "50","50a"]
+export const stadt = [
+    "Köln","Bonn",
+    "Berlin","Duisburg",
+    "New York","London",
+    "Madrid","Bree",
+    "Gondor","Hogsmeade"
+]
+export const bezeichnung = [
+    "Akkuschrauber","Schraubendreher",
+    "Hammer","Nägel",
+    "Zauberkessel","Rennbesen",
+    "Handyhülle","Ladekabel",
+    "Smartphone","Kabel"
+]
+export const betrag = [
+    "5","5.40",
+    "2.40","1.20",
+    "12","9.10",
+    "19.8","2.10"
+]
+export const wärung = [
+    "EUR","USD",
+    "YEN","CHF",
+    "GBP"
+]
+export const pLZ = [
+    "50999","10235",
+    "12103","12161",
+    "49896","41684",
+    "49898","12168"
+]
+export const gebäude = ["A","B","C"]
+export const räume = ["024","486","483","412","448"]
+export const art_Nr = ["12254","12268","12068","12298","12385"]
+export const farzugID = ["024","486","483","412","448"]
+export const alter = ["18","23","15","12"]
+export const tag = ["Mo","Di","Mi","Do","Fr","Sa","So"]
+export const zeit = ["10:30","12:10","15:15","16:30","19:30"]
+export const anzahl = ["5","3","4","8","10","12"]
+export const platz = ["A13","B12","A10","C12","D08"]
+export const klasse = ["1","2","Holzklasse","Business"]
+export const hersteller = ["Samsung","Apple","Xiaomi","Huawei"]
+
+/**
+ * Entitys
+ */
+
+/**
+ * 3 col is an atomar transitiv Attribut
+ * @type {string[][]}
+ */
+
+
+export const entitys = [
+    {
+        "entityname": "Person",
+        "pk": "persID",
+        "ma": [["name","nachname"]],
+        "atomar":[
+            ["name","vorname","nachname"],
+        ]
+    },
+
+    {
+        "entityname": "Veranstaltung",
+        "pk": "VerID",
+        "ma": ["lecture","Raum"],
+        "atomar":[
+                ["Raum","räume", "Ort"]
+        ]
+    },
+    {
+        "entityname": "Product",
+        "pk": "ProductID",
+        "ma": ["Bezeichnung","Preis"],
+        "atomar":[
+            ["Preis","preis","Währung"],
+            ["Ort","gebäude","Hausnummer"]
+        ]
+    },
+
+    {
+        "entityname": "Ort",
+        "pk": "gebäude",
+        "ma": ["strasse"],
+        "ca": ["Hausnummer"],
+        "atomar":[
+            ["strasse","strasse","Hausnummer"]
+        ]
+    }
+]
+
+
+
+/**
+ * Kombination
+ *
+ */
+export const combination = [
+            {
+                "pos_comb":[["Person","Veranstaltung","Ort"]/*,["Person","Konzert","Ort"],["Hersteller","Produkt","Ort"],["Person","Flugzeug","Ort"]*/],
+                "nnf":["pk1","a1","pk2","a2","pk3","a3"],
+                "nf2":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3","a3"]],
+                "nf3":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3"],["pk3","a3"]],
+                "nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2","pk3"],["pk3","a3"],["pk2","a2"]]
+            }
+]
+
+
+

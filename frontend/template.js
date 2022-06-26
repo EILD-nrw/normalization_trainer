@@ -15,14 +15,17 @@ export function main(app,data,events,phrase,phrase_nr,show_solution){
                         <span>${phrase.text}</span>
         
                 </section>
+                
                 <section >
                     <svg id="relation" viewBox="0 0 880 300"></svg>
                 </section>
+                
                 <section id="buttons" class="d-flex justify-content-center flex-wrap px-2 py-3">
                     <button id="next" class="btn btn-primary m-1" @click=${events.onNext}> Weiter </button>
-                    <button id="soulution"  class="btn btn-primary m-1" @click=${events.onSolution}> Abgeben </button>
+                    <button id="checkin"  class="btn btn-primary m-1" ?disabled=${show_solution} @click=${events.onSolution}> Abgeben </button>
                     <button id="soulution"  class="btn btn-primary m-1" @click=${events.onShowSolution}> Lösung zeigen </button>
                 </section>
+                
             </div>           
        </main>
     

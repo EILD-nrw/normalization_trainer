@@ -22,7 +22,6 @@ const createTable = (task) => {
         a_col=0;
     })
 
-
 }
 
 const createRectangle = (xpos,ypos,width,height) => {

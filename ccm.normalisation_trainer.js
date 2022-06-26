@@ -139,11 +139,12 @@
                 },
 
                 onSolution: () =>{
-                    check_solution(this.database.shematas[shema],phrase_nr,getSelectMatrix())
+                    //check_solution(this.database.shematas[shema],phrase_nr,getSelectMatrix())
                 },
 
                 onShowSolution: () =>{
-                    show_solution(this.database.shematas[shema],phrase_nr);
+                    //show_solution(this.database.shematas[shema],phrase_nr);
+                    render(true);
                 }
 
             }
@@ -158,16 +159,25 @@
                 render();
             }
 
-            const render = show_solution=>{
+            const render = (show_solution) =>{
                 this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
+
+
                 //createTask(get_example(),phrase_nr);
                 createTask(task_arr,phrase_nr)
                 //getGeneradeExample(this.database,shema)
-                this.element.querySelector('svg').addEventListener('click',events.selecetCell);
+
+                if(show_solution){
+                    this.element.querySelector('svg').removeEventListener('click',events.selecetCell);
+                }
+
+                else
+                    this.element.querySelector('svg').addEventListener('click',events.selecetCell);
 
             }
+
 
             const reset = () =>{
 
