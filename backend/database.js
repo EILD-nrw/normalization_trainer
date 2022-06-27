@@ -40,10 +40,21 @@ export const Sportspiel = ["Fußball","Dart","Feldhockey","Eishockey","Basketbal
 export const raum = ["450","123","486","489","893","4889","789","534"];
 export const Gebäude = ["A","B","C","D"];
 export const Stadion = ["Köln Arena","Mercedes Arena","FC Stadion","Koloseum"];
-export const Bühne = ["Open Air","Köln Arena","Opern Haus","Alte Flora","Tanzbrunnen"];
+export const Konzerthallee = ["Open Air","Köln Arena","Opern Haus","Alte Flora","Tanzbrunnen"];
 export const Hausnummer = ["50","12a","48","483","45-50"];
 export const Straße = ["Ligusterweg","Am Berg","Landstraße","Hauptstraße"];
-
+export const platz = ["5","3","153","48","15","158"];
+export const Block = Gebäude;
+export const Reihe = Gebäude;
+export const Preis = ["5.00","15.40","9.99","89"];
+export const Essen = ["Ravioli","Pizza","Döner","Spagetti","Gyros","Sushi"];
+export const ArikelID = MatrkNr;
+export const FlugID = MatrkNr;
+export const KarID = MatrkNr;
+export const EssNum = MatrkNr;
+export const Hersteller = ["Apple","Samsung","LG","Xioami","Huawai","Microsoft","Acer","Bosh"];
+export const Artikel = ["Schraubendreher","Smartphone","TV","Laptop"]
+export const Resturant = ["MC","KFC","Krusty Burger","Pizzaria","Vapiano","Dönerman"]
 
 /**
  * Kombination
@@ -60,13 +71,23 @@ export const entity = [
     {
         "entityName":"Veranstaltung",
         "pk":["Vorlnr","Veransnr","konzNr","SpsNr"],
-        "at":[["Vorlesung","Verasntaltung","Konzert","Sportspiel"],["raum","platz"]],
+        "at":[["Vorlesung","Veranstaltung","Konzert","Sportspiel"],["raum","platz"]],
         "atomar":[["raum","Gebäude","raum"],["platz","Block","platz"]]
     },
     {
         "entityName":"Ort",
         "pk":["Gebäude","Konzerthallee","Stadion"],
         "at":[["Straße"]],
+        "atomar":[["Straße","Straße","Hausnummer"]]
+    },
+    { "entityName":"Artikel",
+        "pk":["ArikelID","FlugID","KarID","EssNum"],
+        "at":[["Artikel","Konzert","Sportspiel","Essen"],["Preis","platz"]],
+        "atomar":[["Preis","Wert","Währung"],["Platz","Reihe","platz"]]
+    },
+    { "entityName":"Hersteller",
+        "pk":["HerstellerID","Gebäude","Konzerthallee","Stadion"],
+        "at":[["Hersteller","Resturant"],["Straße"]],
         "atomar":[["Straße","Straße","Hausnummer"]]
     }
 ]
@@ -75,14 +96,15 @@ export const entity = [
 
 export const combination = [
     {
-        "metaSchema":["Person","Veranstaltung","Ort"],
+        "metaSchema":[["Person","Veranstaltung","Ort"]/*["Person","Artikel","Hersteller"]*/],
         "nnf":["pk1","a1","pk2","a2","pk3","a3"],
-        "nf2":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3","a3"]],
-        "nf3":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3"],["pk3","a3"]],
-        "nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2","pk3"],["pk3","a3"],["pk2","a2"]]
+        /*"nf2":[["pk1","a1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3","a3"]],*/
+        "nf2":[["e1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3","a3"]],
+        /*"nf3":[["pk1","a1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3"],["pk3","a3"]],*/
+        "nf3":[["e1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3"],["e3"]],
+        /*"nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2[1]","pk3"],["pk3","a3"],["pk2","a2[0]"]]*/
+        "nbc":[["e1"],["pk1","pk2"],["pk2","a2[1]","pk3"],["e3"],["pk2","a2[0]"]]
     }
-
-
 ]
 
 
