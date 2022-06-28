@@ -7,8 +7,11 @@ let nnf,nf2,nf3;
 let bcnf;
 let pk1=[],a1=[],
     pk2=[],a2=[],
-    pk3=[],a3=[];
+    pk3=[],a3=[],
+    tpk2=[],ta2=[];
+
 let e1=[pk1,a1],e2=[pk2,a2],e3=[pk3,a3]
+let te2=[tpk2,ta2]
 let taskArr = []
 /**METAarr ist grundlegen für die benötigten zwischen Tabellen bzw NNF und NF1
 Tabelle ohne Redundanczen ist die e1,e2,e3 Array bzw. die einzelnen Entitys
@@ -45,71 +48,138 @@ const generade = async ()=>{
     //console.log(e1)
     //console.log(e2)
     //console.log(e3)
+    await createNNF();
 
 
 }
 
 const createEntitys =  async ()=> {
     await createFirstEntity();
+   // await createEntity();
     await createSecondEntity();
     await createThirdEntity();
     await createMETA();
+    console.log(METAarr)
+    await createN1();
+
+
 
 }
 
+
+/***
+ * TESTING
+ */
+const createEntity = () => {
+
+    let aCount=0;
+
+    let randRowNum = minMaxRand(4,7);
+    for(let i=0;i<randRowNum+1;i++){
+        if(i==0)
+            tpk2[i] = combEntityObjs[1]["pk"][rand(combEntityObjs[1]["pk"].length)];
+        else
+            //console.log(pk1[0])
+            tpk2[i] = getData(tpk2[0]);
+    }
+
+    for(let i=0;i<randRowNum+1;i++){
+        ta2[i]=[]
+
+        if(i==0) {
+            combEntityObjs[1]["at"].forEach((atObject) => {
+                let selectAtt = atObject[rand(atObject.length)]
+                combEntityObjs[1]["atomar"].forEach((atomar)=>{
+                    if(atomar[0]==selectAtt){
+                        ta2[i][aCount]=[];
+                        ta2[i][aCount][0]=atomar[0];
+                        ta2[i][aCount][1]=atomar[1]
+                        ta2[i][aCount][2]=atomar[2]
+                    }else{
+                        ta2[i][aCount]=selectAtt;
+                    }
+                })
+                aCount++;
+            })
+        }else{
+            ta2[0].forEach((col)=>{
+                console.log(col)
+               if(Array.isArray(col)) {
+                   ta2[i][aCount]=[];
+                   ta2[i][aCount][1]=getData(col[1]);
+                   ta2[i][aCount][2]=getData(col[2]);
+                   ta2[i][aCount][0]=ta2[i][aCount][1]+" "+ta2[i][aCount][2];
+               }else{
+                 ta2[i][aCount]=getData(col);
+               }
+                aCount++;
+            })
+
+        }
+        aCount=0;
+    }
+
+    console.table(te2);
+}
+/**
+ *
+ */
 const createFirstEntity = ()=>{
 
-    let randRowNum = minMaxRand(3,5);
-    //console.log(randRowNum);
-    //PrimaryKey
-    for(let i=0;i<randRowNum;i++){
+    let aCount=0;
+
+    let randRowNum = minMaxRand(4,7);
+    for(let i=0;i<randRowNum+1;i++){
         if(i==0)
-            pk1[i] = combEntityObjs[0]["pk"][rand(combEntityObjs[1]["pk"].length)];
+            pk1[i] = combEntityObjs[0]["pk"][rand(combEntityObjs[0]["pk"].length)];
         else
             //console.log(pk1[0])
             pk1[i] = getData(pk1[0]);
     }
 
-    let attCount=0;
-    combEntityObjs[0]["at"].forEach((attObject)=>{
-        a1[attCount]=[];
-        let selectAtt = attObject[rand(attObject.length)]
-        combEntityObjs[0]["atomar"].forEach((atomar)=>{
-            if(selectAtt==atomar[0]){
-                for(let i=0;i<randRowNum+1;i++){
-                    a1[attCount][i]=[]
-                    if(i==0){
-                        a1[attCount][i][0]=atomar[0]
-                        a1[attCount][i][1]=atomar[1]
-                        a1[attCount][i][2]=atomar[2]
-                    }
-                    else{
-                        a1[attCount][i][1]=getData(atomar[1])
-                        a1[attCount][i][2]=getData(atomar[2])
-                        a1[attCount][i][0]=a1[attCount][i][1]+" "+a1[attCount][i][2];
-                    }
-                }
+    for(let i=0;i<randRowNum+1;i++){
+        a1[i]=[]
 
-            }else{
-                for(let i=0;i<randRowNum+1;i++){
-                    if(i==0)
-                        a1[attCount][i]=selectAtt;
-                    else
-                        a1[attCount][i]=getData(selectAtt)
+        if(i==0) {
+            combEntityObjs[0]["at"].forEach((atObject) => {
+                let selectAtt = atObject[rand(atObject.length)]
+                combEntityObjs[0]["atomar"].forEach((atomar)=>{
+                    if(atomar[0]==selectAtt  && rand(3)==0){
+                        a1[i][aCount]=[];
+                        a1[i][aCount][0]=atomar[0];
+                        a1[i][aCount][1]=atomar[1]
+                        a1[i][aCount][2]=atomar[2]
+                    }else{
+                        a1[i][aCount]=selectAtt;
+                    }
+                })
+                aCount++;
+            })
+        }else{
+            a1[0].forEach((col)=>{
+                if(Array.isArray(col)) {
+                    a1[i][aCount]=[];
+                    a1[i][aCount][1]=getData(col[1]);
+                    a1[i][aCount][2]=getData(col[2]);
+                    a1[i][aCount][0]=a1[i][aCount][1]+" "+a1[i][aCount][2];
+                }else{
+                    a1[i][aCount]=getData(col);
                 }
-            }
-        })
-        attCount++;
-    })
+                aCount++;
+            })
+
+        }
+        aCount=0;
+    }
 
 
 }
 const createSecondEntity = ()=>{
 
-    let randRowNum = minMaxRand(3,5);
-    //console.log(randRowNum);
-    //PrimaryKey
-    for(let i=0;i<randRowNum;i++){
+    let aCount=0;
+
+    let randRowNum = minMaxRand(4,7);
+    for(let i=0;i<randRowNum+1;i++){
         if(i==0)
             pk2[i] = combEntityObjs[1]["pk"][rand(combEntityObjs[1]["pk"].length)];
         else
@@ -117,120 +187,182 @@ const createSecondEntity = ()=>{
             pk2[i] = getData(pk2[0]);
     }
 
-    let attCount=0;
-    combEntityObjs[1]["at"].forEach((attObject)=>{
-        a2[attCount]=[];
-        let selectAtt = attObject[rand(attObject.length)]
-        combEntityObjs[1]["atomar"].forEach((atomar)=>{
-            if(selectAtt==atomar[0] && rand(3)==0){
-                for(let i=0;i<randRowNum+1;i++){
-                    a2[attCount][i]=[]
-                    if(i==0){
-                        a2[attCount][i][0]=atomar[0]
-                        a2[attCount][i][1]=atomar[1]
-                        a2[attCount][i][2]=atomar[2]
-                    }
-                    else{
-                        a2[attCount][i][1]=getData(atomar[1])
-                        a2[attCount][i][2]=getData(atomar[2])
-                        a2[attCount][i][0]=a2[attCount][i][1]+" "+a2[attCount][i][2];
-                    }
-                }
+    for(let i=0;i<randRowNum+1;i++){
+        a2[i]=[]
 
-            }else{
-                for(let i=0;i<randRowNum+1;i++){
-                    if(i==0)
-                        a2[attCount][i]=selectAtt;
-                    else
-                        a2[attCount][i]=getData(selectAtt)
+        if(i==0) {
+            combEntityObjs[1]["at"].forEach((atObject) => {
+                let selectAtt = atObject[rand(atObject.length)]
+                combEntityObjs[1]["atomar"].forEach((atomar)=>{
+                    if(atomar[0]==selectAtt  && rand(3)==0){
+                        a2[i][aCount]=[];
+                        a2[i][aCount][0]=atomar[0];
+                        a2[i][aCount][1]=atomar[1]
+                        a2[i][aCount][2]=atomar[2]
+                    }else{
+                        a2[i][aCount]=selectAtt;
+                    }
+                })
+                aCount++;
+            })
+        }else{
+            a2[0].forEach((col)=>{
+                if(Array.isArray(col)) {
+                    a2[i][aCount]=[];
+                    a2[i][aCount][1]=getData(col[1]);
+                    a2[i][aCount][2]=getData(col[2]);
+                    a2[i][aCount][0]=a2[i][aCount][1]+" "+a2[i][aCount][2];
+                }else{
+                    a2[i][aCount]=getData(col);
                 }
-            }
-        })
-        attCount++;
-    })
+                aCount++;
+            })
 
+        }
+        aCount=0;
+    }
 
 }
 const createThirdEntity = ()=>{
 
-    let randRowNum = minMaxRand(3,5);
-    //console.log(randRowNum);
-    //PrimaryKey
-    for(let i=0;i<randRowNum;i++){
+    let aCount=0;
+    let randRowNum = minMaxRand(4,7);
+    for(let i=0;i<randRowNum+1;i++){
         if(i==0)
             pk3[i] = combEntityObjs[2]["pk"][rand(combEntityObjs[2]["pk"].length)];
         else
             //console.log(pk1[0])
-            pk3[i] = getData(pk2[0]);
+            pk3[i] = getData(pk3[0]);
     }
+    for(let i=0;i<randRowNum+1;i++){
+        a3[i]=[]
 
-    let attCount=0;
-    combEntityObjs[2]["at"].forEach((attObject)=>{
-        a3[attCount]=[];
-        let selectAtt = attObject[rand(attObject.length)]
-        combEntityObjs[2]["atomar"].forEach((atomar)=>{
-            if(selectAtt==atomar[0] && rand(3)==0){
-                for(let i=0;i<randRowNum+1;i++){
-                    a3[attCount][i]=[]
-                    if(i==0){
-                        a3[attCount][i][0]=atomar[0]
-                        a3[attCount][i][1]=atomar[1]
-                        a3[attCount][i][2]=atomar[2]
+        if(i==0) {
+            combEntityObjs[2]["at"].forEach((atObject) => {
+                let selectAtt = atObject[rand(atObject.length)]
+                combEntityObjs[2]["atomar"].forEach((atomar)=>{
+                    if(atomar[0]==selectAtt  && rand(3)==0){
+                        a3[i][aCount]=[];
+                        a3[i][aCount][0]=atomar[0];
+                        a3[i][aCount][1]=atomar[1]
+                        a3[i][aCount][2]=atomar[2]
+                    }else{
+                        a3[i][aCount]=selectAtt;
                     }
-                    else{
-                        a3[attCount][i][1]=getData(atomar[1])
-                        a3[attCount][i][2]=getData(atomar[2])
-                        a3[attCount][i][0]=a3[attCount][i][1]+" "+a3[attCount][i][2];
-                    }
+                })
+                aCount++;
+            })
+        }else{
+            a3[0].forEach((col)=>{
+                if(Array.isArray(col)) {
+                    a3[i][aCount]=[];
+                    a3[i][aCount][1]=getData(col[1]);
+                    a3[i][aCount][2]=getData(col[2]);
+                    a3[i][aCount][0]=a3[i][aCount][1]+" "+a3[i][aCount][2];
+                }else{
+                    a3[i][aCount]=getData(col);
                 }
+                aCount++;
+            })
 
-            }else{
-                for(let i=0;i<randRowNum+1;i++){
-                    if(i==0)
-                        a3[attCount][i]=selectAtt;
-                    else
-                        a3[attCount][i]=getData(selectAtt)
-                }
-            }
-        })
-    })
+        }
+        aCount=0;
+    }
 
 
 
 }
 
 const createMETA = () => {
-
-    /** iteriere NNF Pattern */
-    METAarr = []
-    let col=0;
-    for (let i = 0; i < 7; i++) {
-        METAarr[i] = []
-        nnf.forEach((phead) => {
-            if(phead == "a1" || phead == "a2" || phead == "a3") {
-                eval(phead).forEach((att)=>{
-                    if(i==0)
-                        METAarr[i][col]=att[i];
-                    else
-                        METAarr[i][col]=att[minMaxRand(1,att.length)]
-                    col++;
-                })
-            }
-            else {
-                if(i==0)
-                    METAarr[i][col] = eval(phead)[i]
-                else
-                    METAarr[i][col] = eval(phead)[minMaxRand(1,eval(phead).length)]
-                col++;
-            }
-        })
-        col=0;
-    }
-    console.table(METAarr)
-    taskArr[0]=[]
-    taskArr[0][0]=METAarr
+        for(let i=0;i<7;i++){
+            METAarr[i]=[]
+            nnf.forEach((col,index)=>{
+                if(i==0){
+                    METAarr[i][index]=eval(col)[0];
+                }else{
+                    METAarr[i][index]=eval(col)[minMaxRand(1,eval(col).length)]
+                }
+            })
+        }
 
 }
+
+const createNNF = () => {
+    let colIndex=0;
+    let tempArr=[];
+
+    METAarr.forEach((row,rowIndex)=>{
+        console.log(row)
+        tempArr[rowIndex]=[]
+
+        row.forEach((col)=>{
+
+            if(Array.isArray(col)){
+
+                col.forEach((atArr)=>{
+
+                    if(Array.isArray(atArr))
+                       tempArr[rowIndex][colIndex] = atArr[0]
+                    else
+                        tempArr[rowIndex][colIndex] = atArr;
+
+                    colIndex++;
+                })
+            }else {
+                tempArr[rowIndex][colIndex] =col;
+            }
+            colIndex++;
+        })
+
+        colIndex=0;
+    })
+
+    taskArr[0]=[]
+    taskArr[0][0]=tempArr;
+}
+const createN1 = () => {
+
+    let colIndex=0;
+    let tempArr=[]
+
+    METAarr.forEach((row,rowIndex)=>{
+        tempArr[rowIndex]=[]
+        row.forEach((col)=>{
+            if(Array.isArray(col)){
+                col.forEach((atArr)=>{
+                    if(Array.isArray(atArr)) {
+                        tempArr[rowIndex][colIndex] = atArr[1]
+                        colIndex++
+                        tempArr[rowIndex][colIndex] = atArr[2]
+                    }
+                    else
+                        tempArr[rowIndex][colIndex] = atArr;
+
+                    colIndex++;
+                })
+            }else {
+                tempArr[rowIndex][colIndex] = col;
+            }
+            colIndex++;
+        })
+
+        colIndex=0;
+    })
+
+    taskArr[1]=[]
+    taskArr[1][0]=tempArr;
+
+
+
+
+
+}
+const createN2 = () => {
+
+
+}
+
+
 
 const getEntity = ()=>{
     entityArr.forEach((entity)=>{
@@ -252,8 +384,6 @@ const getGeneradeExample = (database)=> {
 
 
 }
-
-
 
 /**
  * HELP FUNCTIONS
