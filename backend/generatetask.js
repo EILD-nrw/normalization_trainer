@@ -45,11 +45,15 @@ const generade = async ()=>{
     await getEntity();
     //console.log(combEntityObjs)
     await createEntitys ();
-    //console.log(e1)
-    //console.log(e2)
-    //console.log(e3)
+   // console.table(e1)
+   // console.table(e2)
+   // console.table(e3)
+    //console.table(METAarr)
     await createNNF();
-
+    await createN1();
+    await createN2();
+    await createN3();
+    await createBCN();
 
 }
 
@@ -59,11 +63,7 @@ const createEntitys =  async ()=> {
     await createSecondEntity();
     await createThirdEntity();
     await createMETA();
-    console.log(METAarr)
-    await createN1();
-
-
-
+    //onsole.log(METAarr)
 }
 
 
@@ -123,6 +123,10 @@ const createEntity = () => {
 }
 /**
  *
+ */
+
+/**
+ * Create and Fill Entitys
  */
 const createFirstEntity = ()=>{
 
@@ -272,7 +276,9 @@ const createThirdEntity = ()=>{
 
 
 }
-
+/**
+ * Create META ARRY
+ */
 const createMETA = () => {
         for(let i=0;i<7;i++){
             METAarr[i]=[]
@@ -284,28 +290,25 @@ const createMETA = () => {
                 }
             })
         }
-
 }
 
+/**
+ * Create NormalForm Arrays
+ */
 const createNNF = () => {
     let colIndex=0;
     let tempArr=[];
 
     METAarr.forEach((row,rowIndex)=>{
-        console.log(row)
+       // console.log(row)
         tempArr[rowIndex]=[]
-
         row.forEach((col)=>{
-
             if(Array.isArray(col)){
-
                 col.forEach((atArr)=>{
-
                     if(Array.isArray(atArr))
                        tempArr[rowIndex][colIndex] = atArr[0]
                     else
                         tempArr[rowIndex][colIndex] = atArr;
-
                     colIndex++;
                 })
             }else {
@@ -360,8 +363,131 @@ const createN1 = () => {
 const createN2 = () => {
 
 
+    taskArr[2]=[]
+    let colCounter =0;
+    a2Count = 0;
+
+    nf2.forEach((tables,eIndex)=>{
+        let tempArray = []
+
+        if(tables[0]=="e1"||tables[0]=="e2"||tables[0]=="e3"){
+            //Iteriert durch die Entity
+            let size = eval(tables[0])[0].length
+            for(let i=0;i<size;i++){
+                tempArray[i]=[]
+                eval(tables[0]).forEach((col,index)=>{
+                    tempArray[i][index]=col[i];
+                })
+            }
+        }else{
+            for(let i=0;i<METAarr.length;i++){
+                tempArray[i]=[]
+                tables.forEach((att,aindex)=>{
+                    if(att.includes("a2")){
+                        let aArr = att.split(" ");
+                        let atIndex = nnf.indexOf(aArr[0])
+                        tempArray[i][aindex]=METAarr[i][atIndex][aArr[1]];
+
+                    }
+                    else{
+                        let atIndex = nnf.indexOf(att)
+                        tempArray[i][aindex]=METAarr[i][atIndex]
+
+                    }
+                })
+            }
+
+        }
+
+        taskArr[2][eIndex]=tempArray;
+    })
+
+}
+const createN3 = ()=>{
+
+    taskArr[3]=[]
+    let colCounter =0;
+    a2Count = 0;
+
+    nf3.forEach((tables,eIndex)=>{
+        let tempArray = []
+
+        if(tables[0]=="e1"||tables[0]=="e2"||tables[0]=="e3"){
+            //Iteriert durch die Entity
+            let size = eval(tables[0])[0].length
+            for(let i=0;i<size;i++){
+                tempArray[i]=[]
+                eval(tables[0]).forEach((col,index)=>{
+                    tempArray[i][index]=col[i];
+                })
+            }
+        }else{
+            for(let i=0;i<METAarr.length;i++){
+                tempArray[i]=[]
+                tables.forEach((att,aindex)=>{
+                    if(att.includes("a2")){
+                        let aArr = att.split(" ");
+                        let atIndex = nnf.indexOf(aArr[0])
+                        tempArray[i][aindex]=METAarr[i][atIndex][aArr[1]];
+
+                    }
+                    else{
+                        let atIndex = nnf.indexOf(att)
+                        tempArray[i][aindex]=METAarr[i][atIndex]
+
+                    }
+                })
+            }
+
+        }
+
+        taskArr[3][eIndex]=tempArray;
+    })
+
 }
 
+const createBCN = ()=>{
+
+    taskArr[4]=[]
+    let colCounter =0;
+    a2Count = 0;
+
+    bcnf.forEach((tables,eIndex)=>{
+        let tempArray = []
+
+        if(tables[0]=="e1"||tables[0]=="e2"||tables[0]=="e3"){
+            //Iteriert durch die Entity
+            let size = eval(tables[0])[0].length
+            for(let i=0;i<size;i++){
+                tempArray[i]=[]
+                eval(tables[0]).forEach((col,index)=>{
+                    tempArray[i][index]=col[i];
+                })
+            }
+        }else{
+            for(let i=0;i<METAarr.length;i++){
+                tempArray[i]=[]
+                tables.forEach((att,aindex)=>{
+                    if(att.includes("a2")){
+                        let aArr = att.split(" ");
+                        let atIndex = nnf.indexOf(aArr[0])
+                        tempArray[i][aindex]=METAarr[i][atIndex][aArr[1]];
+
+                    }
+                    else{
+                        let atIndex = nnf.indexOf(att)
+                        tempArray[i][aindex]=METAarr[i][atIndex]
+
+                    }
+                })
+            }
+
+        }
+
+        taskArr[4][eIndex]=tempArray;
+    })
+
+}
 
 
 const getEntity = ()=>{

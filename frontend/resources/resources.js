@@ -26,5 +26,8 @@ export const phrases = [
     },
     {
         "text":"BNF"
+    },
+    {
+        "text":"Done"
     }
 ]

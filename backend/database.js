@@ -19,7 +19,7 @@ export const vorname = [ "Harry","Ross",
     "Michelle","Perry",
     "Frank","Butler",
     "Shirley"];
-export const nachname = ["Ruth","Jackson",
+export const name = ["Ruth","Jackson",
     "Debra","Allen",
     "Gerald","Harris",
     "Raymond","Carter",
@@ -32,7 +32,7 @@ export const nachname = ["Ruth","Jackson",
     "Eric","Long",
     "Amanda","Scott",
     "Teresa","Diaz",
-    "Wanda","Thomas"];
+    "Wanda","Thomas"]; //nachname
 export const Vorlesung = ["Datenbanken","IT-Sicherheit","Netze","Mathematik","Weltherschaft"];
 export const Veranstaltung = ["FIBU","Buchmesse","Gamescom","ComicCon","JavaLand","DOAG0"];
 export const Konzert =  ["Billy Elish","Queen","ABBA","Elton John","Linking Park","Vincent Wise","Backstreet Boys"];
@@ -64,8 +64,8 @@ export const entity = [
     {
         "entityName":"Person",
         "pk":["MatrkNr","PersNr","BesNr"],
-        "at":[["name","nachname"]],
-        "atomar":[["name","vorname","nachname"]],
+        "at":[["name"]],
+        "atomar":[["name","vorname","name"]],
 
     },
     {
@@ -98,12 +98,12 @@ export const combination = [
     {
         "metaSchema":[["Person","Veranstaltung","Ort"]/*["Person","Artikel","Hersteller"]*/],
         "nnf":["pk1","a1","pk2","a2","pk3","a3"],
-        /*"nf2":[["pk1","a1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3","a3"]],*/
-        "nf2":[["e1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3","a3"]],
-        "nf3":[["pk1","a1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3"],["pk3","a3"]],
-        /*"nf3":[["e1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3"],["e3"]],*/
-        "nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2[1]","pk3"],["pk3","a3"],["pk2","a2[0]"]]
-        /*"nbc":[["e1"],["pk1","pk2"],["pk2","a2[1]","pk3"],["e3"],["pk2","a2[0]"]]*/
+        //"nf2":[["pk1","a1"],["pk1","pk2","a2[0]"],["pk2","a2[1]","pk3","a3"]],
+        //"nf3":[["pk1","a1"],["pk1","pk2","a2"],["pk2","a2","pk3"],["pk3","a3"]],
+        //"nbc":[["pk1","a1"],["pk1","pk2"],["pk2","a2","pk3"],["pk3","a3"],["pk2","a2"]]
+        "nf2":[["e1"],["pk1","pk2","a2 0"],["pk2","a2 1","pk3","a3"]],
+        "nf3":[["e1"],["pk1","pk2","a2 0"],["pk2","a2 1","pk3"],["e3"]],
+        "bcnf":[["e1"],["pk1","pk2"],["pk2","a2 1","pk3"],["e3"],["pk2","a2 0"]]
     }
 ]
 
