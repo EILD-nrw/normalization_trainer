@@ -14,7 +14,7 @@ Die Webanwendung kann über GitHub Pages in ihrer Basiskonfiguration ohne Instal
 
 Alternativ kann das Repository als ZIP-Datei heruntergeladen, auf einem beliebigen Webspace entpackt und durch den Aufruf der enthaltenen `index.html` gestartet werden. Die ZIP-Variante hat den Vorteil einer von GitHub unabhängigen Version ohne externe Abhängigkeiten.
 
-In einer Lernplattform (z.B. ILIAS oder Moodle) kann die App entweder über die Web-URL, über das Hochladen der ZIP-Datei oder via SCORM integriert werden.
+In einer Lernplattform (z.B. ILIAS oder Moodle) kann die App entweder über die Web-URL oder über das Hochladen der ZIP-Datei integriert werden.
 
 ## Datenverarbeitung
 
