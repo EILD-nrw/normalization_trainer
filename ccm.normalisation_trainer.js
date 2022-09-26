@@ -76,8 +76,9 @@
 
                 this.modal.title = "TEST";
 
+                schema = this.database["combination"][rand(this.database["combination"].length)]
 
-                task_arr = await getGeneradeExample(this.database);
+                task_arr = await getGeneradeExample(this.database,schema);
 
                 if($.isObject(this.phrases))
                     this.phrases = Object.values(this.phrases).map(phrases=>{delete phrases.key; return phrases; });
@@ -139,12 +140,16 @@
                 },
 
                 onSolution: () =>{
-                    //check_solution(this.database.shematas[shema],phrase_nr,getSelectMatrix())
+                    check_solution(phrase_nr,getSelectMatrix())
                 },
 
                 onShowSolution: () =>{
-                    //show_solution(this.database.shematas[shema],phrase_nr);
-                    render(true);
+                    get_solution(phrase_nr);
+                    render(true,true);
+                },
+
+                onGetHint: ()=>{
+                    render(false,true)
                 }
 
             }
@@ -153,17 +158,16 @@
                 phrase_nr++;
                 data.sections.push({
                     text:phrases[0].text,
-                    task:phrases[0].task
+                    hint:phrases[0].hint
                 });
 
                 render();
             }
 
-            const render = (show_solution) =>{
-                this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution),this.element);
+            const render = (show_solution,show_hint) =>{
+                this.html.render(this.html.main(this,data,events,phrases[0],phrase_nr,show_solution,show_hint),this.element);
                 this.element.querySelectorAll('[selected]').forEach(option => option.selected = true);
                 svg = this.element.querySelector('#relation');
-
 
                 //createTask(get_example(),phrase_nr);
                 createTask(task_arr,phrase_nr)

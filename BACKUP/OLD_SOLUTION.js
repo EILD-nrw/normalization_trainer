@@ -139,7 +139,6 @@ const nf2_redunance =  async (count) =>  {
         table_arr.push(content)
     }
 
-
     let duplicate = table_arr.filter(findDuplicates)
     duplicate = checkDublicateIdIsEqual(duplicate,temp_arr,table_header)
 
@@ -150,7 +149,6 @@ const nf2_redunance =  async (count) =>  {
             if(dup==cell){
                 solution_arr[tmp]=1;
             }
-
         })
         tmp++;
     })

@@ -31,8 +31,7 @@ const createRectangle = (xpos,ypos,width,height) => {
         y: ypos,
         width: width,
         height: height,
-        fill: 'snow',
-        isSelect: false
+        fill: 'snow'
     });
         svg.appendChild(cell);
 }
@@ -115,16 +114,15 @@ const  createTask = async (settask,pharse) => {
     a_col = 0;
     a_row = 0;
 
+
     data.forEach((tables)=>{
 
         createTable(tables);
-
         a_row=0;
         a_col=0;
         x_pos+=tables[0].length*width+5;
-
-
     })
+
 
 }
 

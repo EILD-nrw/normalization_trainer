@@ -11,23 +11,27 @@ export const confi={
  */
 export const phrases = [
     {
-        "text":"Wende die 1NF, an falls diese Tabelle bereits in der 1NF ist klicke auf weiter.",
-        "hint":"Einige Attribute scheinen auf den ersten Blick Atomar, bei genauerer Betrachtung aber nicht mehr"
+        "text":"Wenden Sie die erste Normalform an.",
+        "hint":"Eine Relation befindet sich in der ersten Normalform wenn alle Attribute"
     },
     {
-        "text":"Makiere alle Redundanz die sich in der Tabelle Befinden ",
-        "hint":"Tretten mehrfach in einer Relation, können aber auf das nötigste redudziert werden."
+        "text":"Makieren Sie alle Redundanzen die sich in der Relation befinden",
+        "hint":"Redundanzen sind Werte die doppelt in der Relation vorkommen."
     },
     {
-        "text":"Welche Attribute sind von dem Primärschlüssel funktional Abhängig"
+        "text":"Welche Werte sind Funktional abhänig",
+        "hint":"Welche nicht Schlüssel Attribute besitzen eine FUnktionale abhänigkeit zu einen PK"
     },
     {
-        "text":"3NF"
+        "text":"Existieren Werte die nicht direkt von einem PK abhänig sind? Makieren Sie diese.",
+        "hint":"Welche Werte besitzen eine transitive Abhänigkeit zu einander."
     },
     {
-        "text":"BNF"
+        "text":"Bringen Sie die 3NF in die BCNF",
+        "hint":"Schauen Sie sich die Relationen mit einem zusammen gesätzen Primärschlüssel an."
     },
     {
-        "text":"Done"
+        "text":"Die Relation ist jetzt in der BCNF",
+        "hint":""
     }
 ]
