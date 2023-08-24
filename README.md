@@ -20,12 +20,6 @@ Diese Variante hat den Vorteil, dass kein eigener Webspace benötigt wird und gl
 
 In einer Lernplattform (z.B. ILIAS oder Moodle) kann die App entweder über die Web-URL oder über das Hochladen der ZIP-Datei integriert werden.
 
-## Anpassbarkeit
-Layout und Design können über die `resources/styles.css` angepasst werden.
-Die `resources/templates.js` enthält die HTML-Templates, in der bei Bedarf weitere HTML-ID's und HTML-Klassen ergänzt werden können, um das Selektieren von HTML-Elementen im CSS zu erleichtern.
-Wer über die nötigen Programmierkenntnisse verfügt, kann auch die Logik des interaktiven Trainers in der `ccm.normalisation_trainer.js` anpassen.
-Es handelt sich dabei um eine auf der _ccmjs_-Webtechnologie basierende Webkomponente.
-
 ## Datenverarbeitung
 An keiner Stelle werden Benutzer-spezifische Daten verarbeitet.
 Es handelt sich um reine Selbsttests mit direktem Feedback, was richtig/falsch beantwortet wurde.
