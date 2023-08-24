@@ -3,21 +3,28 @@
 ## Beschreibung
 Interaktiver Trainer, der Beispiele anhand einer Meta-Topologie generiert/entwickelt.
 In dieser Meta-Topologie werden die einzelnen Schritte der Normalisierung abstrakt definiert.
+Bei der Implementierung handelt es sich um einen Prototyp.
 
 ## Systemanforderungen
-Voraussetzung für die App ist ein gängiger Webbrowser (Firefox, Google Chrome, Microsoft Edge, Opera, Safari) mit aktiviertem JavaScript in einer aktuellen Version.
+Voraussetzung für die App ist ein gängiger Webbrowser (z.B. Firefox, Google Chrome, Microsoft Edge oder Safari) mit aktiviertem JavaScript in einer aktuellen Version.
 
 ## Installation
 Die Webanwendung kann über GitHub Pages in ihrer Basiskonfiguration ohne Installation über die folgende Web-URL direkt genutzt werden: https://eild-nrw.github.io/normalization_trainer/.
 Über die Web-URL ist die Webanwendung immer auf dem neusten Stand und muss nicht von Hand aktualisiert werden.
 
 Alternativ kann das Repository als ZIP-Datei heruntergeladen, auf einem beliebigen Webspace entpackt und durch den Aufruf der enthaltenen `index.html` gestartet werden.
-Die ZIP-Variante hat den Vorteil einer von GitHub unabhängigen Version ohne externe Abhängigkeiten.
+Die ZIP-Variante hat den Vorteil einer von GitHub unabhängigen Version ohne externe Abhängigkeiten, bei der auch individuelle Anpassungen vorgenommen werden können.
 
 Eine dritte Möglichkeit ist ein _Fork_ des Repository, der anschließend über GitHub Pages veröffentlicht wird.
-Diese Variante hat den Vorteil, dass kein eigener Webspace benötigt wird und gleichzeitig auch individuelle Anpassungen möglich sind.
+Diese Variante hat den Vorteil, dass kein eigener Webspace benötigt wird und gleichzeitig auch die individuelle Anpassbarkeit gegeben ist.
 
 In einer Lernplattform (z.B. ILIAS oder Moodle) kann die App entweder über die Web-URL oder über das Hochladen der ZIP-Datei integriert werden.
+
+## Anpassbarkeit
+Layout und Design können über die `resources/styles.css` angepasst werden.
+Die `resources/templates.js` enthält die HTML-Templates, in der bei Bedarf weitere HTML-ID's und HTML-Klassen ergänzt werden können, um das Selektieren von HTML-Elementen im CSS zu erleichtern.
+Wer über die nötigen Programmierkenntnisse verfügt, kann auch die Logik des interaktiven Trainers in der `ccm.normalisation_trainer.js` anpassen.
+Es handelt sich dabei um eine auf der _ccmjs_-Webtechnologie basierende Webkomponente.
 
 ## Datenverarbeitung
 An keiner Stelle werden Benutzer-spezifische Daten verarbeitet.
@@ -25,12 +32,14 @@ Es handelt sich um reine Selbsttests mit direktem Feedback, was richtig/falsch b
 Es existieren keine Abhängigkeiten zu externen Servern und es findet entsprechend kein Datenaustausch mit anderen Servern statt.
 
 ## Lizenzen
-Dieses Repository enthält Software und Content.
-Bei der Software handelt es sich um freie Software unter der [MIT-Lizenz](/LICENSE).
-Beim Content handelt es sich um gemeinfreie Inhalte unter der [CC0-Lizenz](https://creativecommons.org/publicdomain/zero/1.0/deed.de).
-
-## Hintergrundinformationen
-Der Normalisierungstrainer wurde an der Hochschule Bonn-Rhein-Sieg im Rahmen des [EILD-Projekts](https://github.com/EILD-nrw) als Bachelorarbeit von Tobias Hansen entwickelt. Bei der Implementierung handelt es sich um einen Prototyp.
+Der [Normalisierungstrainer](https://github.com/eild-nrw/normalization_trainer) wurde ausgehend von
+der Normalisierungsanimation von Frederic Cieslik
+von Tobias Hansen als Bachelorarbeit im Rahmen
+des [EILD-Projekts](https://eild.nrw) an
+der [Hochschule Bonn-Rhein-Sieg](https://h-brs.de) prototypisch entwickelt.
+Dieses Repository enthält Software unter [MIT-Lizenz](/LICENSE) und Content
+unter [CC0-Lizenz](https://creativecommons.org/publicdomain/zero/1.0/deed.de),
+ausgenommen sind die verwendeten Logos.
 
 ## Kontakt
 Wir freuen uns über jedes Feedback und beantworten gern Ihre Fragen.
