@@ -33,10 +33,23 @@ export function main(app,data,events,phrase,phrase_nr,show_solution,show_hint){
                     <button id="soulution"  class="btn btn-primary m-1" @click=${events.onShowSolution}> Lösung zeigen </button>
                 </section>
                 
-            </div>           
+            </div>
        </main>
-    
+       
+       <!-- Lizenzen -->
+       <aside class="bg-light rounded text-center form-text mt-4 mx-3">
+           Der <a href="https://github.com/eild-nrw/normalization_trainer" target="_blank">Normalisierungstrainer</a> wurde ausgehend
+           von der Normalisierungsanimation von Frederic Cieslik
+           von Tobias Hansen als Bachelorarbeit im Rahmen
+           des <a href="https://eild.nrw" target="_blank">EILD-Projekts</a> an
+           der <a href="https://h-brs.de" target="_blank">Hochschule Bonn-Rhein-Sieg</a> prototypisch entwickelt.
+           Dieser interaktive Trainer enthält Software unter <a href="https://opensource.org/licenses/MIT" target="_blank">MIT-Lizenz</a> und Content
+           unter der <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.de" target="_blank">CC0-Lizenz</a>.
+       </aside>
+       
+       <!-- Logos -->
+       <aside class="mx-3 mt-3 text-center">
+           <img src="https://eild-nrw.github.io/normalization_trainer/frontend/resources/img/logos.jpg">
+       </aside>
     `
-
-
 }
