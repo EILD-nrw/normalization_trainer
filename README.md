@@ -43,7 +43,7 @@ ausgenommen sind die verwendeten Logos.
 
 ## Kontakt
 Wir freuen uns über jedes Feedback und beantworten gern Ihre Fragen.
-Hierfür können Sie sich jederzeit (auch nach dem Ende des EILD-Projekts) an den Projektmitarbeiter André Kless wenden.
+Hierfür können Sie sich jederzeit (auch nach dem Ende des EILD-Projekts) an André Kless wenden.
 
 Email: andre.kless@h-brs.de | Web: https://www.h-brs.de/de/inf/andre-kless
 
